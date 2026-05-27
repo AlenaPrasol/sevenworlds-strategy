@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevenworlds — Материалы стратегии</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:  #F7F4EE;
+  --cream2: #EFEBe2;
+  --cream3: #E8E3D8;
+  --white:  #FDFCF9;
+  --black:  #1A1815;
+  --dark:   #2E2B26;
+  --muted:  #8A8070;
+  --gold:   #B5914A;
+  --gold2:  #C9A55C;
+  --border: #DDD8CE;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── ФОНОВЫЙ УЗОР ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(181,145,74,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(181,145,74,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── ОБЁРТКА ─── */
+.wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+}
+
+/* ─── ШАПКА ─── */
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.header-eyebrow {
+  font-size: 9px;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.header-eyebrow::before,
+.header-eyebrow::after {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold);
+  opacity: .5;
+}
+.header-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 8vw, 100px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: .1em;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.header-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(247,244,238,0.35);
+  letter-spacing: .06em;
+  margin-bottom: 32px;
+}
+.header-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto;
+}
+
+/* ─── СЕТКА ДОКУМЕНТОВ ─── */
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 60px;
+}
+
+.doc-card {
+  background: rgba(255,255,255,0.02);
+  padding: 56px 44px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: background .35s;
+  cursor: pointer;
+}
+.doc-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s ease;
+}
+.doc-card:hover {
+  background: rgba(181,145,74,0.07);
+}
+.doc-card:hover::after {
+  transform: scaleX(1);
+}
+
+.doc-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(181,145,74,0.12);
+  position: absolute;
+  top: 16px; right: 20px;
+  line-height: 1;
+  user-select: none;
+  transition: color .35s;
+}
+.doc-card:hover .doc-num {
+  color: rgba(181,145,74,0.2);
+}
+
+.doc-icon {
+  font-size: 36px;
+  margin-bottom: 24px;
+  display: block;
+}
+.doc-tag {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.doc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: .02em;
+}
+.doc-desc {
+  font-size: 12px;
+  color: rgba(247,244,238,0.45);
+  line-height: 1.85;
+  flex: 1;
+  margin-bottom: 32px;
+}
+.doc-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 32px;
+}
+.doc-includes-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 11px;
+  color: rgba(247,244,238,0.35);
+}
+.doc-includes-item::before {
+  content: '—';
+  color: var(--gold);
+  opacity: .6;
+  flex-shrink: 0;
+  font-size: 10px;
+}
+.doc-arrow {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: gap .3s;
+}
+.doc-card:hover .doc-arrow {
+  gap: 20px;
+}
+.doc-arrow::after {
+  content: '→';
+  font-size: 14px;
+}
+
+/* ─── FEATURED CARD (первая — главная) ─── */
+.doc-card.featured {
+  background: rgba(181,145,74,0.06);
+  border-right: 1px solid rgba(181,145,74,0.15);
+}
+.doc-card.featured::before {
+  content: 'ОСНОВНОЙ';
+  position: absolute;
+  top: 20px; left: 44px;
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: var(--gold);
+  background: rgba(181,145,74,0.2);
+  padding: 4px 10px;
+}
+.doc-card.featured:hover {
+  background: rgba(181,145,74,0.1);
+}
+
+/* ─── НИЖНЯЯ СТРОКА ─── */
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: .18em;
+  color: rgba(247,244,238,0.25);
+}
+.footer-date {
+  font-size: 10px;
+  letter-spacing: .15em;
+  color: rgba(247,244,238,0.2);
+  text-transform: uppercase;
+}
+.footer-note {
+  font-size: 10px;
+  color: rgba(247,244,238,0.2);
+  letter-spacing: .1em;
+}
+
+/* ─── HOVER GLOW ─── */
+.doc-card:hover .doc-title {
+  color: rgba(247,244,238,0.95);
+}
+
+/* ─── АДАПТИВ ─── */
+@media (max-width: 800px) {
+  .docs-grid { grid-template-columns: 1fr; }
+  .wrap { padding: 60px 24px; }
+  .header { margin-bottom: 48px; }
+  .footer-row { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* ─── АНИМАЦИЯ ─── */
+.doc-card {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp .6s ease forwards;
+}
+.doc-card:nth-child(1) { animation-delay: .1s; }
+.doc-card:nth-child(2) { animation-delay: .22s; }
+.doc-card:nth-child(3) { animation-delay: .34s; }
+
+@keyframes fadeUp {
+  to { opacity:1; transform:translateY(0); }
+}
+
+.header {
+  opacity: 0;
+  animation: fadeUp .7s ease .05s forwards;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ШАПКА -->
+  <div class="header">
+    <div class="header-eyebrow">Стратегические материалы · Май 2026</div>
+    <div class="header-brand">SEVENWORLDS</div>
+    <div class="header-sub">Полный пакет документов для развития бренда</div>
+    <div class="header-divider"></div>
+  </div>
+
+  <!-- КАРТОЧКИ ДОКУМЕНТОВ -->
+  <div class="docs-grid">
+
+    <!-- 01 — Главная презентация -->
+    <a class="doc-card featured" href="sevenworlds-presentation.html" target="_blank">
+      <div class="doc-num">01</div>
+      <span class="doc-icon">📊</span>
+      <div class="doc-tag">Стратегия · Анализ · Предложение</div>
+      <div class="doc-title">Стратегия развития бренда</div>
+      <div class="doc-desc">
+        Полный стратегический документ: анализ бренда, рынка и конкурентов,
+        SMM-стратегия, воронка продаж, план реанимации на 90 дней
+        и коммерческое предложение AI-агента Jarvis.
+      </div>
+      <div class="doc-includes">
+        <span class="doc-includes-item">Анализ бренда и продукта</span>
+        <span class="doc-includes-item">Рынок 459 млрд ₽ — тренды и конкуренты</span>
+        <span class="doc-includes-item">SMM-стратегия для 4 платформ</span>
+        <span class="doc-includes-item">5-уровневая воронка продаж</span>
+        <span class="doc-includes-item">90-дневный план реанимации</span>
+        <span class="doc-includes-item">Что мы создаём — полный список</span>
+        <span class="doc-includes-item">Предложение AI-агента Jarvis</span>
+      </div>
+      <div class="doc-arrow">Открыть документ</div>
+    </a>
+
+    <!-- 02 — Аудит соцсетей -->
+    <a class="doc-card" href="sevenworlds-social-audit.html" target="_blank">
+      <div class="doc-num">02</div>
+      <span class="doc-icon">📱</span>
+      <div class="doc-tag">Аудит · Диагностика · KPI</div>
+      <div class="doc-title">Аудит социальных сетей</div>
+      <div class="doc-desc">
+        Детальный разбор всех цифровых каналов бренда:
+        что работает, что мешает росту и конкретные шаги
+        для каждой платформы с целевыми показателями.
+      </div>
+      <div class="doc-includes">
+        <span class="doc-includes-item">Instagram @sevenworlds — стратегия активации</span>
+        <span class="doc-includes-item">Telegram 182 → 5 000 подписчиков</span>
+        <span class="doc-includes-item">Pinterest — возрождение с 1 подписчика</span>
+        <span class="doc-includes-item">TikTok — срочный запуск с нуля</span>
+        <span class="doc-includes-item">90-дневный дорожная карта</span>
+        <span class="doc-includes-item">KPI на 3 / 6 / 12 месяцев</span>
+        <span class="doc-includes-item">Рекомендуемый бюджет SMM</span>
+      </div>
+      <div class="doc-arrow">Открыть документ</div>
+    </a>
+
+    <!-- 03 — Манифест бренда -->
+    <a class="doc-card" href="sevenworlds-manifesto.html" target="_blank">
+      <div class="doc-num">03</div>
+      <span class="doc-icon">📜</span>
+      <div class="doc-tag">Манифест · Голос · Ценности</div>
+      <div class="doc-title">Манифест бренда</div>
+      <div class="doc-desc">
+        Философский фундамент Sevenworlds: почему украшения
+        с историей храмов — это не тренд, а новый способ
+        говорить о вечном. Голос, убеждения, портреты покупательниц.
+      </div>
+      <div class="doc-includes">
+        <span class="doc-includes-item">Философия «украшений с памятью»</span>
+        <span class="doc-includes-item">7 убеждений бренда</span>
+        <span class="doc-includes-item">9 храмов, ставших украшениями</span>
+        <span class="doc-includes-item">Обещание бренда покупателю</span>
+        <span class="doc-includes-item">3 портрета «Хранительницы миров»</span>
+        <span class="doc-includes-item">Таблица голоса: как говорим / как не говорим</span>
+        <span class="doc-includes-item">Поэтический финал — подпись основателя</span>
+      </div>
+      <div class="doc-arrow">Открыть документ</div>
+    </a>
+
+  </div>
+
+  <!-- НИЖНЯЯ СТРОКА -->
+  <div class="footer-row">
+    <div class="footer-brand">SEVENWORLDS</div>
+    <div class="footer-date">Май 2026 · Конфиденциально</div>
+    <div class="footer-note">ru.theseventh.world</div>
+  </div>
+
+</div>
+</body>
+</html>
