@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevenworlds — Манифест бренда</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:  #F7F4EE;
+  --cream2: #EFEBe2;
+  --white:  #FDFCF9;
+  --black:  #1A1815;
+  --dark:   #2E2B26;
+  --muted:  #8A8070;
+  --gold:   #B5914A;
+  --gold2:  #C9A55C;
+  --border: #DDD8CE;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.9;
+  overflow-x: hidden;
+}
+
+@media print {
+  .print-btn, nav { display:none !important; }
+  body { background: white; font-size: 13px; }
+  .hero { min-height: auto; padding: 60px; page-break-after: always; }
+  section { page-break-inside: avoid; }
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  background: rgba(253,252,249,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 80px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--black);
+}
+.nav-label {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.print-btn {
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 22px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s;
+}
+.print-btn:hover { background: var(--gold); color: white; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 100px 100px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(181,145,74,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(181,145,74,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-ornament {
+  position: absolute;
+  top: 80px; right: 100px;
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(181,145,74,0.5);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.hero-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 280px;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(181,145,74,0.08);
+  position: absolute;
+  right: 60px;
+  bottom: 60px;
+  letter-spacing: -.02em;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-eyebrow {
+  font-size: 9px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 40px; height: 1px;
+  background: var(--gold);
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 96px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--cream);
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+.hero-title em {
+  font-style: italic;
+  color: rgba(247,244,238,0.5);
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(247,244,238,0.4);
+  margin-bottom: 64px;
+  letter-spacing: .06em;
+}
+.hero-tagline {
+  max-width: 560px;
+  font-size: 14px;
+  line-height: 2;
+  color: rgba(247,244,238,0.55);
+  letter-spacing: .02em;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  padding: 100px;
+}
+section:nth-child(even) { background: var(--cream); }
+
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.eyebrow::before {
+  content: '';
+  display: block; width: 28px; height: 1px;
+  background: var(--gold);
+}
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px;
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--black);
+  letter-spacing: .03em;
+  margin-bottom: 56px;
+}
+h2 em { font-style: italic; color: var(--muted); }
+
+/* ─── MANIFESTO TEXT ─── */
+.manifesto-text {
+  max-width: 820px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--dark);
+  letter-spacing: .01em;
+}
+.manifesto-text p { margin-bottom: 32px; }
+.manifesto-text p:last-child { margin-bottom: 0; }
+
+/* ─── PULL QUOTE ─── */
+.pull-quote {
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 40px 0;
+  margin: 60px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--black);
+  letter-spacing: .02em;
+  max-width: 720px;
+}
+.pull-quote::before {
+  content: '"';
+  font-size: 120px;
+  line-height: 0;
+  vertical-align: -0.4em;
+  color: var(--gold);
+  opacity: .3;
+  margin-right: 8px;
+}
+
+/* ─── BELIEFS GRID ─── */
+.beliefs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 60px;
+}
+.belief-cell {
+  background: var(--white);
+  padding: 48px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.belief-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 100px;
+  font-weight: 300;
+  color: var(--cream2);
+  position: absolute;
+  top: 20px; right: 24px;
+  line-height: 1;
+  user-select: none;
+}
+.belief-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.belief-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.85;
+  max-width: 340px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── TEMPLES SECTION ─── */
+.temples-intro {
+  max-width: 680px;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 60px;
+}
+.temple-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.temple-item {
+  background: var(--cream);
+  padding: 36px 32px;
+  border-bottom: 2px solid transparent;
+  transition: border-color .3s;
+}
+.temple-item:hover { border-color: var(--gold); background: var(--white); }
+.temple-location {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.temple-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.temple-idea {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ─── PROMISE SECTION ─── */
+.promise-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.promise-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--dark);
+}
+.promise-text p { margin-bottom: 24px; }
+.promise-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.promise-item {
+  background: var(--white);
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.promise-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.promise-item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.promise-item-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ─── AUDIENCE ─── */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 60px;
+}
+.audience-card {
+  background: var(--white);
+  padding: 44px 36px;
+}
+.audience-archetype {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.audience-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+.audience-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.audience-buys {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  line-height: 1.6;
+}
+
+/* ─── VOICE SECTION ─── */
+.voice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+.voice-table th {
+  text-align: left;
+  padding: 14px 24px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--cream2);
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+.voice-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.voice-table tr:last-child td { border-bottom: none; }
+.voice-table tr:hover td { background: var(--cream); }
+.td-trait {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 180px;
+}
+.td-yes { color: var(--dark); }
+.td-no { color: var(--muted); text-decoration: line-through; }
+
+/* ─── CLOSING ─── */
+.closing {
+  background: var(--black);
+  color: var(--cream);
+  padding: 120px 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.closing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(181,145,74,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.closing-eyebrow {
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  position: relative;
+}
+.closing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--cream);
+  letter-spacing: .04em;
+  margin-bottom: 48px;
+  position: relative;
+}
+.closing-title em { color: rgba(247,244,238,0.35); }
+.closing-text {
+  max-width: 600px;
+  margin: 0 auto 64px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(247,244,238,0.6);
+  position: relative;
+}
+.closing-divider {
+  width: 60px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 36px;
+  position: relative;
+}
+.closing-signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(247,244,238,0.4);
+  position: relative;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--cream2);
+  border-top: 1px solid var(--border);
+  padding: 36px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .12em;
+}
+.footer-note { font-size: 10px; color: var(--muted); letter-spacing: .1em; }
+
+/* ─── ANIMATION ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.fade-up.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">SEVENWORLDS</div>
+  <div class="nav-label">Манифест бренда · Внутренний документ</div>
+  <button class="print-btn" onclick="window.print()">↓ PDF</button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-ornament">Brand Manifesto · 2026</div>
+  <div class="hero-num">VII</div>
+  <div class="hero-eyebrow">Манифест бренда</div>
+  <div class="hero-title">SEVEN<br><em>WORLDS</em></div>
+  <div class="hero-sub">Украшения, которые помнят</div>
+  <div class="hero-tagline">
+    Каждое украшение — это не металл и не камень.<br>
+    Это след места, которое изменило нас.<br>
+    Семь миров. Одно украшение. Одна история.
+  </div>
+</div>
+
+<!-- ─── МАНИФЕСТ ─── -->
+<section class="fade-up">
+  <div class="eyebrow">01 · Наша вера</div>
+  <h2>Мы верим в <em>украшения<br>с памятью</em></h2>
+
+  <div class="manifesto-text">
+    <p>
+      Есть места на земле, где камень помнит молитвы.
+      Где своды держат не потолок, а небо.
+      Где золото на алтаре говорит о вечности
+      больше, чем любое слово.
+    </p>
+    <p>
+      Мы путешествовали в эти места.
+      Мы стояли внутри и слушали.
+      И привезли домой не сувениры —
+      мы привезли форму.
+    </p>
+    <p>
+      Форму арки Айя-Софии. Ритм колонн Пантеона.
+      Изгиб купола Самарканда. Плетение решётки Альгамбры.
+      Тишину Золотого храма в Амритсаре.
+    </p>
+    <p>
+      Эти формы мы превратили в украшения.
+      Потому что украшение должно нести в себе больше,
+      чем блеск. Оно должно нести историю.
+    </p>
+  </div>
+
+  <div class="pull-quote">
+    Украшение — это не то, что ты надеваешь на тело.
+    Это то, что ты несёшь в мир как часть себя.
+  </div>
+
+  <div class="manifesto-text">
+    <p>
+      Мы делаем каждое украшение вручную.
+      Сначала из воска — как это делали мастера 5 000 лет назад.
+      Потом из бронзы — металла, который не боится времени.
+      Потом покрываем 999 золотом или платиной с родием —
+      потому что то, что несёт историю, должно быть вечным.
+    </p>
+    <p>
+      Мы не делаем «коллекции сезона».
+      Мы делаем архив памяти.
+      Украшения, которые будут переходить от матери к дочери
+      и рассказывать: однажды твоя мать стояла в Стамбуле,
+      смотрела на купол и поняла что-то важное о красоте.
+    </p>
+  </div>
+</section>
+
+<!-- ─── ЦЕННОСТИ ─── -->
+<section class="fade-up">
+  <div class="eyebrow">02 · Во что мы верим</div>
+  <h2>Семь <em>убеждений</em></h2>
+
+  <div class="beliefs-grid">
+    <div class="belief-cell">
+      <div class="belief-num">I</div>
+      <div class="belief-title">Красота требует истории</div>
+      <div class="belief-text">
+        Украшение без истории — просто блестящий предмет.
+        Украшение с историей — это разговор.
+        Каждое изделие Sevenworlds имеет имя, происхождение
+        и место, которое его вдохновило.
+      </div>
+    </div>
+    <div class="belief-cell">
+      <div class="belief-num">II</div>
+      <div class="belief-title">Ручная работа — это уважение</div>
+      <div class="belief-text">
+        Мы не штампуем. Каждая деталь проходит через руки мастера.
+        Техника потерянного воска существует тысячи лет.
+        Мы выбрали её потому, что машина не умеет
+        вкладывать намерение.
+      </div>
+    </div>
+    <div class="belief-cell">
+      <div class="belief-num">III</div>
+      <div class="belief-title">Доступность — это не дешевизна</div>
+      <div class="belief-text">
+        Sevenworlds — люксовый продукт по цене, которую
+        можно себе позволить. Не потому что мы экономим,
+        а потому что верим: красота с историей должна
+        быть доступна тем, кто её понимает.
+      </div>
+    </div>
+    <div class="belief-cell">
+      <div class="belief-num">IV</div>
+      <div class="belief-title">Путешествие — это исследование</div>
+      <div class="belief-text">
+        Екатерина не едет в отпуск. Она едет в экспедицию.
+        Каждая поездка — это поиск новой формы, нового
+        смысла, нового разговора между архитектурой
+        и украшением.
+      </div>
+    </div>
+    <div class="belief-cell">
+      <div class="belief-num">V</div>
+      <div class="belief-title">Сакральное — это универсально</div>
+      <div class="belief-text">
+        Мы не привязаны к одной религии или культуре.
+        Мы находим красоту во всех традициях,
+        где человек строил что-то большее чем дом —
+        место для разговора с вечностью.
+      </div>
+    </div>
+    <div class="belief-cell">
+      <div class="belief-num">VI</div>
+      <div class="belief-title">Металл помнит руки</div>
+      <div class="belief-text">
+        Бронза — один из старейших сплавов человечества.
+        Золотое покрытие 999 пробы не тускнеет.
+        Мы намеренно выбираем материалы, которые
+        не боятся времени — как и истории, которые мы рассказываем.
+      </div>
+    </div>
+    <div class="belief-cell" style="grid-column: span 2; background: var(--cream2);">
+      <div class="belief-num" style="color: rgba(181,145,74,0.15);">VII</div>
+      <div class="belief-title" style="font-size:32px;">Семь миров — это не предел</div>
+      <div class="belief-text" style="max-width: 600px; font-size:14px;">
+        Название «Sevenworlds» — это не про семь стран или семь коллекций.
+        Это про семь измерений красоты: форма, свет, текстура, история,
+        намерение, время и то, как украшение меняет того, кто его носит.
+        Мы исследуем все семь — и никогда не останавливаемся.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ХРАМЫ ─── -->
+<section class="fade-up">
+  <div class="eyebrow">03 · Вдохновение</div>
+  <h2>Храмы, которые<br><em>стали украшениями</em></h2>
+
+  <p class="temples-intro">
+    Мы путешествуем не чтобы отдохнуть. Мы путешествуем чтобы смотреть.
+    На то, как разные цивилизации строили места силы.
+    Как они соединяли землю и небо — через форму.
+    Эти формы живут в каждом украшении Sevenworlds.
+  </p>
+
+  <div class="temple-list">
+    <div class="temple-item">
+      <div class="temple-location">Стамбул, Турция</div>
+      <div class="temple-name">Айя-София</div>
+      <div class="temple-idea">Купол, который парит. Свет, падающий сквозь 40 окон. Архитектура как манифест о бессмертии.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Самарканд, Узбекистан</div>
+      <div class="temple-name">Регистан</div>
+      <div class="temple-idea">Геометрия звёзд на фасадах. Бирюза неба, вписанная в мозаику. Математика как форма молитвы.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Рим, Италия</div>
+      <div class="temple-name">Пантеон</div>
+      <div class="temple-idea">Совершенная окружность отверстия в куполе. Свет как единственный алтарь. 2000 лет в каждом камне.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Гранада, Испания</div>
+      <div class="temple-name">Альгамбра</div>
+      <div class="temple-idea">Сталактитовые своды мукарнас. Арабеска как бесконечность. Красота как аргумент против смерти.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Амритсар, Индия</div>
+      <div class="temple-name">Золотой храм</div>
+      <div class="temple-idea">Золото, отражающееся в воде. Паломники с рассвета. Красота как равенство — для всех.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Киото, Япония</div>
+      <div class="temple-name">Кинкаку-дзи</div>
+      <div class="temple-idea">Сусальное золото на дереве. Отражение в пруду лучше оригинала. Красота в мимолётности.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Мехико, Мексика</div>
+      <div class="temple-name">Теотиуакан</div>
+      <div class="temple-idea">Пирамиды без острых вершин — плавные, живые. Архитектура как карта звёздного неба на земле.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Баган, Мьянма</div>
+      <div class="temple-name">Пагоды Багана</div>
+      <div class="temple-idea">Три тысячи башен в тумане рассвета. Повторение как медитация. Время, остановленное в камне.</div>
+    </div>
+    <div class="temple-item">
+      <div class="temple-location">Иерусалим</div>
+      <div class="temple-name">Купол Скалы</div>
+      <div class="temple-idea">Восьмиугольник как мост между мирами. Синяя плитка и золотой купол — диалог неба и земли.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ОБЕЩАНИЕ ─── -->
+<section class="fade-up">
+  <div class="eyebrow">04 · Наше обещание</div>
+  <h2>Что мы даём<br><em>каждому, кто носит нас</em></h2>
+
+  <div class="promise-layout">
+    <div class="promise-text">
+      <p>
+        Когда ты надеваешь украшение Sevenworlds,
+        ты надеваешь не металл. Ты надеваешь историю
+        места, где красота победила время.
+      </p>
+      <p>
+        Ты становишься частью длинного разговора
+        между людьми, которые строили невозможное,
+        и людьми, которые приходят смотреть на это
+        спустя столетия.
+      </p>
+      <p>
+        Мы обещаем, что каждое изделие будет сделано
+        с полным уважением к своему прообразу.
+        Что металл выдержит годы. Что история
+        никогда не устареет.
+      </p>
+    </div>
+    <div class="promise-items">
+      <div class="promise-item">
+        <div class="promise-icon">🏛️</div>
+        <div>
+          <div class="promise-item-title">Подлинная история</div>
+          <div class="promise-item-text">Каждое украшение сопровождается историей места, которое его вдохновило. Не маркетинговой легендой — реальной историей.</div>
+        </div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✋</div>
+        <div>
+          <div class="promise-item-title">Ручная работа</div>
+          <div class="promise-item-text">Техника потерянного воска, ручная полировка, индивидуальная проверка каждого изделия перед отправкой.</div>
+        </div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✨</div>
+        <div>
+          <div class="promise-item-title">Вечные материалы</div>
+          <div class="promise-item-text">Бронза + золото 999 пробы или платина + родий. Материалы выбраны так, чтобы украшение пережило хозяйку.</div>
+        </div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">🌍</div>
+        <div>
+          <div class="promise-item-title">Живой архив</div>
+          <div class="promise-item-text">Коллекция пополняется с каждым путешествием. Когда появляется новое место — появляется новое украшение.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ДЛЯ КОГО ─── -->
+<section class="fade-up">
+  <div class="eyebrow">05 · Наш покупатель</div>
+  <h2>Три портрета<br><em>Хранительницы миров</em></h2>
+
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-archetype">Архетип 1 · «Путешественница»</div>
+      <div class="audience-name">Марина, 34</div>
+      <div class="audience-desc">
+        Финансовый директор. Летает в Стамбул на выходные,
+        в Дубай — на конференции. Не покупает сувениры —
+        покупает «якоря памяти». Ищет украшение,
+        которое расскажет историю поездки лучше фото.
+      </div>
+      <div class="audience-buys">
+        «Я хочу, чтобы украшение напоминало мне о том,
+        какой я была в тот момент, когда стояла внутри Айя-Софии.»
+      </div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-archetype">Архетип 2 · «Коллекционер»</div>
+      <div class="audience-name">Светлана, 42</div>
+      <div class="audience-desc">
+        Собственник бизнеса. Ценит не бренд, а смысл.
+        Устала от украшений «для статуса».
+        Хочет носить то, что умнее её наряда.
+        Читает об архитектуре. Слушает подкасты об истории.
+      </div>
+      <div class="audience-buys">
+        «Когда я надеваю кольцо с мотивом мукарнас,
+        я чувствую что в комнате есть только один
+        человек с таким украшением. Это важно.»
+      </div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-archetype">Архетип 3 · «Первооткрыватель»</div>
+      <div class="audience-name">Алия, 27</div>
+      <div class="audience-desc">
+        Архитектор или дизайнер. Знает про Sevenworlds
+        из Instagram — влюбилась в концепцию.
+        Копит на первое украшение. Для неё это
+        не покупка, а ритуал перехода.
+      </div>
+      <div class="audience-buys">
+        «Мне важно, что это сделано руками,
+        что я знаю откуда это, и что это
+        не из торгового центра напротив.»
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ГОЛОС БРЕНДА ─── -->
+<section class="fade-up">
+  <div class="eyebrow">06 · Голос бренда</div>
+  <h2>Как мы <em>говорим</em></h2>
+
+  <p style="max-width:640px; color:var(--muted); margin-bottom:48px; font-size:14px; line-height:1.9;">
+    Голос Sevenworlds — это голос умной, путешествующей женщины,
+    которая много видела и хочет рассказать об этом точно,
+    без пафоса и без объяснений очевидного.
+  </p>
+
+  <table class="voice-table">
+    <thead>
+      <tr>
+        <th>Качество голоса</th>
+        <th>Мы говорим так</th>
+        <th>Мы не говорим так</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-trait">Поэтично</td>
+        <td class="td-yes">«Купол, который помнит молитвы семи веков»</td>
+        <td class="td-no">«Красивое украшение с историей»</td>
+      </tr>
+      <tr>
+        <td class="td-trait">Конкретно</td>
+        <td class="td-yes">«Кольцо весит 4,2 г. Внутри — след воска, который мы лепили в декабре в Стамбуле»</td>
+        <td class="td-no">«Премиальное качество изготовления»</td>
+      </tr>
+      <tr>
+        <td class="td-trait">Интимно</td>
+        <td class="td-yes">«Я стояла внутри и думала: вот форма, которую я хочу носить»</td>
+        <td class="td-no">«Новая коллекция уже доступна»</td>
+      </tr>
+      <tr>
+        <td class="td-trait">Умно</td>
+        <td class="td-yes">«Мукарнас — это исламская геометрия как способ показать бесконечность Бога»</td>
+        <td class="td-no">«Восточные мотивы, вдохновлённые красотой востока»</td>
+      </tr>
+      <tr>
+        <td class="td-trait">Без суеты</td>
+        <td class="td-yes">«Возможно, вам понравится. Возможно — нет»</td>
+        <td class="td-no">«Только сегодня! Последние штуки! Успей!»</td>
+      </tr>
+      <tr>
+        <td class="td-trait">С юмором</td>
+        <td class="td-yes">«Пантеон строили 2000 лет назад. Кольцо — три месяца. Но вдохновение то же»</td>
+        <td class="td-no">«Подарите себе роскошь» (пустая фраза)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ─── CLOSING ─── -->
+<div class="closing">
+  <div class="closing-eyebrow">Sevenworlds · Манифест</div>
+  <div class="closing-title">
+    Украшение —<br>это не аксессуар.<br>
+    <em>Это аргумент.</em>
+  </div>
+  <div class="closing-divider"></div>
+  <div class="closing-text">
+    Аргумент в пользу того, что красота существует.
+    Что история имеет форму.
+    Что металл может говорить.
+    И что человек, который это носит,
+    знает об этом мире чуть больше, чем остальные.
+  </div>
+  <div class="closing-signature">
+    — Екатерина Цатурян, основатель Sevenworlds
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">SEVENWORLDS</div>
+  <div class="footer-note">Манифест бренда · Конфиденциальный документ · 2026</div>
+  <div class="footer-note">ru.theseventh.world</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
