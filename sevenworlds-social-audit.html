@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevenworlds — Аудит социальных сетей</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:    #F7F4EE;
+  --cream2:   #EFEBe2;
+  --cream3:   #E8E3D8;
+  --white:    #FDFCF9;
+  --black:    #1A1815;
+  --dark:     #2E2B26;
+  --muted:    #8A8070;
+  --gold:     #B5914A;
+  --gold2:    #C9A55C;
+  --gold-lt:  #D9BC84;
+  --border:   #DDD8CE;
+  --border2:  #CCC6BA;
+  --red:      #C0392B;
+  --red-lt:   #F5DDDA;
+  --green:    #2E7D52;
+  --green-lt: #D6EDE3;
+  --amber:    #B8860B;
+  --amber-lt: #FFF3CD;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── PRINT ─── */
+@media print {
+  nav, .print-btn { display: none !important; }
+  body { background: white; }
+  .section { page-break-inside: avoid; }
+  .cover { page-break-after: always; min-height: auto; padding: 80px 60px; }
+  .page-break { page-break-before: always; }
+}
+
+/* ─── НАВИГАЦИЯ ─── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  background: rgba(253,252,249,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 60px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: var(--black);
+  text-decoration: none;
+}
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: color .25s;
+}
+.nav-links a:hover { color: var(--gold); }
+.print-btn {
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  transition: background .25s;
+}
+.print-btn:hover { background: var(--gold2); }
+
+/* ─── ОБЛОЖКА ─── */
+.cover {
+  min-height: 100vh;
+  padding: 140px 100px 80px;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181,145,74,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-tag {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.cover-tag::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold);
+}
+.cover-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: .06em;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 48px;
+  letter-spacing: .04em;
+}
+.cover-meta {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.cover-meta-item {
+  border-left: 1px solid var(--gold);
+  padding-left: 20px;
+}
+.cover-meta-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.cover-meta-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+}
+.cover-divider {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 32px;
+}
+.cover-summary {
+  max-width: 560px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  padding: 100px;
+}
+.section:nth-child(even) { background: var(--cream); }
+.section:nth-child(odd) { background: var(--white); }
+
+.section-eyebrow {
+  font-size: 9px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 60px;
+  letter-spacing: .03em;
+}
+
+/* ─── OVERVIEW CARDS ─── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 80px;
+}
+.overview-card {
+  background: var(--white);
+  padding: 36px 32px;
+  text-align: center;
+}
+.overview-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: block;
+}
+.overview-platform {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.overview-handle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+.overview-stat {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.overview-stat-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+.stat-red { color: var(--red); }
+.stat-amber { color: var(--amber); }
+.stat-green { color: var(--green); }
+.stat-muted { color: var(--muted); }
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 12px;
+}
+.badge-critical { background: var(--red-lt); color: var(--red); }
+.badge-warning { background: var(--amber-lt); color: var(--amber); }
+.badge-ok { background: var(--green-lt); color: var(--green); }
+.badge-absent { background: var(--cream3); color: var(--muted); }
+
+/* ─── PLATFORM SECTIONS ─── */
+.platform-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+  align-items: start;
+}
+.platform-icon-block {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.platform-icon-big {
+  font-size: 56px;
+  line-height: 1;
+}
+.platform-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+.platform-handle-tag {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: .08em;
+  margin-top: 4px;
+}
+
+.platform-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.stat-box {
+  background: var(--white);
+  padding: 24px 20px;
+  text-align: center;
+}
+.stat-box-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-box-label {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── PROBLEM / SOLUTION LISTS ─── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+.list-block { }
+.list-block-title {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.list-item:last-child { border-bottom: none; }
+.list-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.dot-red { background: var(--red); }
+.dot-green { background: var(--green); }
+.dot-gold { background: var(--gold); }
+.dot-amber { background: var(--amber); }
+
+/* ─── KPI TABLE ─── */
+.kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  font-size: 13px;
+}
+.kpi-table th {
+  text-align: left;
+  padding: 12px 20px;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--cream2);
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+.kpi-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.kpi-table tr:last-child td { border-bottom: none; }
+.kpi-table tr:hover td { background: var(--cream); }
+.td-platform {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.td-current { color: var(--muted); }
+.td-target { color: var(--green); font-weight: 500; }
+.td-period { color: var(--gold); font-style: italic; }
+
+/* ─── TIMELINE ─── */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 60px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--border) 100%);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+.timeline-dot {
+  position: absolute;
+  left: -44px; top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--white);
+  outline: 1px solid var(--gold);
+}
+.timeline-phase {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.timeline-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.timeline-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+/* ─── PRIORITY MATRIX ─── */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 60px;
+}
+.matrix-cell {
+  background: var(--white);
+  padding: 36px 32px;
+}
+.matrix-cell-title {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+.matrix-cell-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.matrix-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.chip-icon { font-size: 16px; }
+
+/* ─── BUDGET TABLE ─── */
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.budget-row:last-child { border-bottom: none; }
+.budget-row:hover { background: var(--cream); }
+.budget-item { font-size: 13px; }
+.budget-range {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.budget-total {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+.budget-total .budget-item { font-weight: 600; font-size: 14px; }
+.budget-total .budget-range { font-size: 28px; }
+
+/* ─── CONCLUSION ─── */
+.conclusion {
+  background: var(--black);
+  color: var(--cream);
+  padding: 100px;
+  text-align: center;
+}
+.conclusion-eyebrow {
+  font-size: 9px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.conclusion-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  letter-spacing: .04em;
+}
+.conclusion-text {
+  max-width: 640px;
+  margin: 0 auto 60px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(247,244,238,0.65);
+}
+.conclusion-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+.c-metric-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.c-metric-label {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.45);
+}
+.conclusion-cta {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  padding: 14px 48px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s;
+}
+.conclusion-cta:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ─── QUOTE BLOCK ─── */
+.quote-block {
+  background: var(--cream2);
+  border-left: 3px solid var(--gold);
+  padding: 32px 40px;
+  margin: 40px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--dark);
+}
+.quote-source {
+  margin-top: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+}
+
+/* ─── CONTENT TYPES ─── */
+.content-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.pill {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--dark);
+  background: var(--white);
+  border-radius: 2px;
+}
+.pill-gold {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+.pill-filled {
+  background: var(--cream3);
+  border-color: var(--cream3);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--cream2);
+  border-top: 1px solid var(--border);
+  padding: 40px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: .1em;
+}
+.footer-note {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+/* ─── SCROLL ANIMATION ─── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ─── НАВИГАЦИЯ ─── -->
+<nav>
+  <a class="nav-logo" href="#">SEVENWORLDS</a>
+  <ul class="nav-links">
+    <li><a href="#overview">Обзор</a></li>
+    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#telegram">Telegram</a></li>
+    <li><a href="#pinterest">Pinterest</a></li>
+    <li><a href="#tiktok">TikTok</a></li>
+    <li><a href="#roadmap">Дорожная карта</a></li>
+    <li><a href="#kpi">KPI</a></li>
+  </ul>
+  <button class="print-btn" onclick="window.print()">↓ Скачать PDF</button>
+</nav>
+
+<!-- ─── ОБЛОЖКА ─── -->
+<section class="cover">
+  <div class="cover-tag">Конфиденциально · Только для клиента</div>
+  <div class="cover-brand">SEVENWORLDS</div>
+  <div class="cover-subtitle">Аудит социальных сетей и цифровых каналов</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Дата аудита</div>
+      <div class="cover-meta-value">Май 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Охват анализа</div>
+      <div class="cover-meta-value">4 платформы</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Статус бренда</div>
+      <div class="cover-meta-value">Требует реанимации</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Потенциал роста</div>
+      <div class="cover-meta-value">×20 за 12 мес.</div>
+    </div>
+  </div>
+  <div class="cover-summary">
+    Sevenworlds — ювелирный бренд уровня ЦУМ с точками продаж в Москве,
+    Санкт-Петербурге, Краснодаре, Казани, Новосибирске и Дубае.
+    При исключительном качестве продукта и премиальной дистрибуции
+    цифровое присутствие бренда критически не соответствует его реальному уровню.
+    Данный аудит фиксирует текущее состояние и определяет приоритеты роста.
+  </div>
+</section>
+
+<!-- ─── ОБЩИЙ ОБЗОР ─── -->
+<section id="overview" class="section fade-in">
+  <div class="section-eyebrow">01 · Общая картина</div>
+  <h2 class="section-title">Цифровое присутствие<br><em>бренда сегодня</em></h2>
+
+  <div class="overview-grid">
+    <div class="overview-card">
+      <span class="overview-icon">📷</span>
+      <div class="overview-platform">Instagram</div>
+      <div class="overview-handle">@sevenworlds</div>
+      <div class="overview-stat stat-amber">активен</div>
+      <div class="overview-stat-label">основной канал</div>
+      <span class="status-badge badge-warning">Требует роста</span>
+    </div>
+    <div class="overview-card">
+      <span class="overview-icon">✈️</span>
+      <div class="overview-platform">Telegram</div>
+      <div class="overview-handle">@seven7worlds</div>
+      <div class="overview-stat stat-red">182</div>
+      <div class="overview-stat-label">подписчика</div>
+      <span class="status-badge badge-critical">Критично мало</span>
+    </div>
+    <div class="overview-card">
+      <span class="overview-icon">📌</span>
+      <div class="overview-platform">Pinterest</div>
+      <div class="overview-handle">xplanerdigital</div>
+      <div class="overview-stat stat-red">1</div>
+      <div class="overview-stat-label">подписчик</div>
+      <span class="status-badge badge-critical">Фактически мёртв</span>
+    </div>
+    <div class="overview-card">
+      <span class="overview-icon">🎵</span>
+      <div class="overview-platform">TikTok</div>
+      <div class="overview-handle">отсутствует</div>
+      <div class="overview-stat stat-muted">—</div>
+      <div class="overview-stat-label">нет аккаунта</div>
+      <span class="status-badge badge-absent">Отсутствует</span>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    Бренд, представленный в ЦУМ и Дубае, не должен иметь 182 подписчика
+    в Telegram. Это не проблема продукта — это проблема подачи.
+    <div class="quote-source">— Ключевой вывод аудита</div>
+  </div>
+
+  <div class="two-col">
+    <div class="list-block">
+      <div class="list-block-title">Сильные стороны</div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Продукт уровня luxury — бронза + 999 золото, ручная работа, литьё по выплавляемым моделям</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Уникальная концепция: украшения-артефакты, вдохновлённые архитектурой храмов мира</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Премиальная дистрибуция: ЦУМ, Poison Drop (6 городов), Дубай</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Telegram-канал уже ведётся с авторским голосом основателя</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Нетронутая ниша «ювелирного путешествия» в Instagram</span>
+      </div>
+    </div>
+
+    <div class="list-block">
+      <div class="list-block-title">Критические слабости</div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Telegram: 182 подписчика при люксовом уровне продукта</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Pinterest: аккаунт с нерелевантным названием, 1 подписчик</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>TikTok: полное отсутствие при 1 млрд пользователей платформы</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Разрыв между офлайн-дистрибуцией и онлайн-аудиторией</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Отсутствие системной SMM-стратегии и контент-плана</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INSTAGRAM ─── -->
+<section id="instagram" class="section page-break fade-in">
+  <div class="section-eyebrow">02 · Платформа 1 из 4</div>
+  <h2 class="section-title">Instagram<br><em>@sevenworlds</em></h2>
+
+  <div class="platform-header">
+    <div>
+      <div class="platform-icon-block">
+        <div class="platform-icon-big">📷</div>
+        <div>
+          <div class="platform-name">Instagram</div>
+          <div class="platform-handle-tag">@sevenworlds</div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; max-width:440px;">
+        Основной визуальный канал бренда. Instagram — главная площадка для
+        ювелирных брендов в России и мире. Именно здесь формируется образ,
+        строится доверие и происходят первые касания с покупателем.
+      </p>
+    </div>
+
+    <div class="platform-stats">
+      <div class="stat-box">
+        <div class="stat-box-value stat-amber">активен</div>
+        <div class="stat-box-label">Статус</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--gold)">5–10%</div>
+        <div class="stat-box-label">Целевой ER</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--green)">×5</div>
+        <div class="stat-box-label">Потенциал роста</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="list-block">
+      <div class="list-block-title">Проблемы, которые необходимо устранить</div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Непоследовательная визуальная система — фотографии разного стиля и качества освещения</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Отсутствие Reels — короткие видео дают органический охват в 3–10× больше фото</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Слабые описания: нет истории изделия, нет привязки к концепции храмов</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Не используется архив Stories (Highlights) для «обучения» новых посетителей</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Нет UGC (пользовательского контента) — репостов клиентов с украшениями</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Хэштеги устаревшие или отсутствуют</span>
+      </div>
+    </div>
+
+    <div class="list-block">
+      <div class="list-block-title">Стратегия роста Instagram</div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Разработать единую визуальную систему: свет, цвет, угол съёмки — строгий brand book</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Запустить серию Reels «История изделия» — от идеи к готовому украшению (30–60 сек)</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Stories каждый день: за кулисами, путешествия Екатерины, храмы-вдохновения</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Запустить Highlights: Коллекции / О бренде / Как носить / Отзывы / Где купить</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Коллаборации с 3–5 micro-KOL в нише «путешествия + стиль» (50–200K подписчиков)</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Конкурс UGC: «Покажи, как ты носишь Sevenworlds» с призом и репостом</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-block-title" style="margin-bottom:16px;">Рекомендуемые форматы контента</div>
+  <div class="content-pills">
+    <span class="pill pill-gold">Reels — история изделия</span>
+    <span class="pill pill-gold">Reels — процесс создания</span>
+    <span class="pill pill-gold">Reels — temple journey</span>
+    <span class="pill pill-filled">Карусель — коллекция</span>
+    <span class="pill pill-filled">Карусель — как носить</span>
+    <span class="pill pill-filled">Фото — lifestyle</span>
+    <span class="pill">Stories — BTS</span>
+    <span class="pill">Stories — опросы</span>
+    <span class="pill">Stories — путешествия</span>
+    <span class="pill">Коллаб с KOL</span>
+    <span class="pill">UGC репосты</span>
+    <span class="pill">IGTV — интервью основателя</span>
+  </div>
+</section>
+
+<!-- ─── TELEGRAM ─── -->
+<section id="telegram" class="section page-break fade-in">
+  <div class="section-eyebrow">03 · Платформа 2 из 4</div>
+  <h2 class="section-title">Telegram<br><em>@seven7worlds</em></h2>
+
+  <div class="platform-header">
+    <div>
+      <div class="platform-icon-block">
+        <div class="platform-icon-big">✈️</div>
+        <div>
+          <div class="platform-name">Telegram</div>
+          <div class="platform-handle-tag">t.me/seven7worlds · «VII. Заметки основателя»</div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; max-width:440px;">
+        Самый интимный канал бренда. Формат «Заметки основателя» —
+        это редкая ценность: живой голос Екатерины, её путешествия,
+        вдохновение. Именно этот канал может стать точкой глубокой
+        привязанности аудитории к бренду.
+      </p>
+    </div>
+
+    <div class="platform-stats">
+      <div class="stat-box">
+        <div class="stat-box-value stat-red">182</div>
+        <div class="stat-box-label">Подписчиков сейчас</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--green)">5 000+</div>
+        <div class="stat-box-label">Цель за 12 мес.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--gold)">×27</div>
+        <div class="stat-box-label">Потенциал роста</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    «VII. Заметки основателя» — это золото. Нужно только правильно
+    его упаковать и распространить. Личный голос в luxury —
+    это то, чего нет ни у Tiffany, ни у Bulgari.
+    <div class="quote-source">— Анализ конкурентных преимуществ</div>
+  </div>
+
+  <div class="two-col">
+    <div class="list-block">
+      <div class="list-block-title">Что работает — сохранить</div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Формат личных заметок — редкий и ценный в luxury-сегменте</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Нарратив путешествий и открытий органично связан с ДНК бренда</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Авторский голос Екатерины создаёт эмоциональную связь</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-green"></div>
+        <span>Канал уже существует — не нужно начинать с нуля</span>
+      </div>
+    </div>
+
+    <div class="list-block">
+      <div class="list-block-title">Что необходимо изменить</div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>182 подписчика — критически мало для бренда такого уровня</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Нет системного привлечения аудитории из Instagram и сайта</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Нет ссылки на Telegram в шапке Instagram-профиля</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Нет эксклюзивного контента, который побудит подписаться именно сюда</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-block">
+    <div class="list-block-title" style="margin-bottom:16px;">Стратегия роста: 182 → 5 000 подписчиков</div>
+    <div class="list-item">
+      <div class="list-dot dot-gold"></div>
+      <span><strong>Шаг 1:</strong> Добавить ссылку на Telegram во все профили Instagram и в шапку сайта</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-gold"></div>
+      <span><strong>Шаг 2:</strong> В каждом Instagram Reels — призыв «детали и история — в Telegram»</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-gold"></div>
+      <span><strong>Шаг 3:</strong> Создать эксклюзивный контент только для Telegram: закрытые продажи, первые показы коллекций</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-gold"></div>
+      <span><strong>Шаг 4:</strong> Взаимопиар с 3–5 Telegram-каналами в нише «путешествия», «art de vivre», «slow life luxury»</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-gold"></div>
+      <span><strong>Шаг 5:</strong> Серия «Один храм — одно украшение» с продолжением только в Telegram</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PINTEREST ─── -->
+<section id="pinterest" class="section page-break fade-in">
+  <div class="section-eyebrow">04 · Платформа 3 из 4</div>
+  <h2 class="section-title">Pinterest<br><em>xplanerdigital</em></h2>
+
+  <div class="platform-header">
+    <div>
+      <div class="platform-icon-block">
+        <div class="platform-icon-big">📌</div>
+        <div>
+          <div class="platform-name">Pinterest</div>
+          <div class="platform-handle-tag">xplanerdigital · 1 подписчик</div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; max-width:440px;">
+        Pinterest — мощнейшая поисковая машина для украшений.
+        400+ миллионов пользователей, 83% из которых совершали покупки
+        на основе контента Pinterest. Сейчас аккаунт бренда
+        фактически не существует.
+      </p>
+    </div>
+
+    <div class="platform-stats">
+      <div class="stat-box">
+        <div class="stat-box-value stat-red">1</div>
+        <div class="stat-box-label">Подписчик</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--red)">xplaner<br>digital</div>
+        <div class="stat-box-label">Нерелевантное имя</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--green)">огромный</div>
+        <div class="stat-box-label">Потенциал</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="list-block">
+      <div class="list-block-title">Критические проблемы</div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Название аккаунта «xplanerdigital» не связано с брендом — создаёт путаницу</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>1 подписчик означает полное отсутствие контент-стратегии</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Pinterest индексируется Google — каждый пин это потенциальный SEO-трафик</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Конкуренты (AVGVST, Ringstone) активно используют Pinterest для органического роста</span>
+      </div>
+    </div>
+
+    <div class="list-block">
+      <div class="list-block-title">Plan действий: возрождение</div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span>Переименовать аккаунт в @sevenworlds или @thesevenworldsjewelry</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span>Создать 8–10 тематических досок: Коллекции / Храмы мира / Путешествия / Детали / Вдохновение</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span>Загружать 5–10 пинов в день первые 3 месяца — Pinterest «обучается» на объёме</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span>Использовать Rich Pins для привязки к каталогу и ценам</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--cream2); border: 1px solid var(--border); padding: 32px 40px; margin-top: 20px;">
+    <div class="list-block-title" style="margin-bottom:16px;">Почему Pinterest критически важен для Sevenworlds</div>
+    <p style="font-size:13px; color:var(--muted); line-height:1.9;">
+      Pinterest — единственная платформа, где запрос <strong style="color:var(--black);">«ювелирные украшения с историей»</strong>
+      или <strong style="color:var(--black);">«украшения в стиле temple architecture»</strong> приводит покупателя
+      напрямую к продукту. Аудитория Pinterest — женщины 25–45 лет с высоким доходом,
+      которые планируют покупки заранее. Это идеальный покупатель Sevenworlds.
+      Конкуренты уже там. Каждый месяц отсутствия — потерянный трафик.
+    </p>
+  </div>
+</section>
+
+<!-- ─── TIKTOK ─── -->
+<section id="tiktok" class="section page-break fade-in">
+  <div class="section-eyebrow">05 · Платформа 4 из 4</div>
+  <h2 class="section-title">TikTok<br><em>Аккаунта нет</em></h2>
+
+  <div class="platform-header">
+    <div>
+      <div class="platform-icon-block">
+        <div class="platform-icon-big">🎵</div>
+        <div>
+          <div class="platform-name">TikTok</div>
+          <div class="platform-handle-tag">Аккаунт отсутствует · Срочный приоритет</div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.8; max-width:440px;">
+        TikTok — крупнейшая платформа для discovery новых брендов.
+        1 миллиард активных пользователей. Алгоритм даёт органический
+        охват без подписчиков — новый аккаунт может набрать
+        миллион просмотров на первом видео.
+      </p>
+    </div>
+
+    <div class="platform-stats">
+      <div class="stat-box">
+        <div class="stat-box-value stat-red">0</div>
+        <div class="stat-box-label">Подписчиков</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value stat-red">нет</div>
+        <div class="stat-box-label">Аккаунта</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-value" style="color:var(--gold)">1 млрд</div>
+        <div class="stat-box-label">Аудитория TikTok</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="list-block">
+      <div class="list-block-title">Что теряет бренд каждый месяц</div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Органический охват без рекламного бюджета — уникальное свойство TikTok-алгоритма</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Молодая аудитория 18–34 — будущие покупатели luxury через 5 лет</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>TikTok Shop — прямые продажи из видео без перехода на сайт</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-red"></div>
+        <span>Контент «как это сделано» для ювелиров собирает миллионы просмотров</span>
+      </div>
+    </div>
+
+    <div class="list-block">
+      <div class="list-block-title">Топ-5 форматов для запуска</div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span><strong>«Transformation»</strong> — восковая модель превращается в украшение из золота</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span><strong>«Temple to Jewelry»</strong> — храм в Индии / Стамбуле → украшение с его мотивом</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span><strong>«Unboxing ЦУМ»</strong> — распаковка в премиальном контексте</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span><strong>«GRWM»</strong> — основатель надевает украшения перед поездкой</span>
+      </div>
+      <div class="list-item">
+        <div class="list-dot dot-gold"></div>
+        <span><strong>«POV: you bought jewelry in Dubai»</strong> — lifestyle contex</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--red-lt); border-left: 3px solid var(--red); padding: 28px 36px; margin-top: 20px;">
+    <div style="font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:10px; font-weight:500;">⚠ Срочно</div>
+    <p style="font-size:13px; color:var(--dark); line-height:1.8;">
+      TikTok аккаунт нужно создать в первые 30 дней работы.
+      Алгоритм TikTok благосклонен к новым аккаунтам — это «медовый месяц»,
+      который нельзя откладывать. Первые 10 видео получают
+      повышенный органический охват автоматически.
+    </p>
+  </div>
+</section>
+
+<!-- ─── ROADMAP ─── -->
+<section id="roadmap" class="section page-break fade-in">
+  <div class="section-eyebrow">06 · Дорожная карта</div>
+  <h2 class="section-title">90 дней цифровой<br><em>трансформации</em></h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Месяц 1 · Дни 1–30 · Фундамент</div>
+      <div class="timeline-title">Создание инфраструктуры</div>
+      <div class="timeline-text">
+        Нанять SMM-менеджера и контент-мейкера. Разработать brand book для фото/видео.
+        Создать TikTok аккаунт. Переименовать Pinterest. Добавить ссылки на Telegram везде.
+        Снять 30 фото и 10 видео-заготовок. Запустить первые 5 Reels в Instagram.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Месяц 2 · Дни 31–60 · Контент</div>
+      <div class="timeline-title">Запуск системного контента</div>
+      <div class="timeline-text">
+        Instagram: 3–4 поста в неделю + Stories каждый день. TikTok: 1 видео в день.
+        Pinterest: 10 пинов в день. Telegram: 3–4 поста в неделю с эксклюзивами.
+        Запустить первую KOL-коллаборацию. Взаимопиар в Telegram.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">Месяц 3 · Дни 61–90 · Рост</div>
+      <div class="timeline-title">Масштабирование и продажи</div>
+      <div class="timeline-text">
+        Анализ первых результатов. Удвоить производство лучшего формата.
+        Запустить таргетированную рекламу на Instagram. Провести первый закрытый
+        pre-sale в Telegram. Коллаборация с 2–3 travel-блогерами.
+        Подключить TikTok Shop.
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; margin-bottom:32px; letter-spacing:.03em;">Матрица приоритетов</h3>
+  <div class="matrix-grid">
+    <div class="matrix-cell" style="border-right: 2px solid var(--border2);">
+      <div class="matrix-cell-title" style="color: var(--red);">🔴 Срочно + Важно · Делать сейчас</div>
+      <div class="matrix-cell-items">
+        <div class="matrix-chip"><span class="chip-icon">🎵</span>Создать TikTok аккаунт</div>
+        <div class="matrix-chip"><span class="chip-icon">👩‍💼</span>Нанять SMM и контент-мейкера</div>
+        <div class="matrix-chip"><span class="chip-icon">🎬</span>Запустить Reels в Instagram</div>
+        <div class="matrix-chip"><span class="chip-icon">🔗</span>Добавить ссылки на Telegram везде</div>
+      </div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title" style="color: var(--amber);">🟡 Важно, не срочно · Планировать</div>
+      <div class="matrix-cell-items">
+        <div class="matrix-chip"><span class="chip-icon">📸</span>Brand book фотографии</div>
+        <div class="matrix-chip"><span class="chip-icon">📌</span>Возродить Pinterest</div>
+        <div class="matrix-chip"><span class="chip-icon">🤝</span>KOL коллаборации</div>
+        <div class="matrix-chip"><span class="chip-icon">🎁</span>UGC программа</div>
+      </div>
+    </div>
+    <div class="matrix-cell" style="border-right: 2px solid var(--border2);">
+      <div class="matrix-cell-title" style="color: var(--muted);">⚪ Срочно, менее важно · Делегировать</div>
+      <div class="matrix-cell-items">
+        <div class="matrix-chip"><span class="chip-icon">🏷️</span>Обновить хэштеги</div>
+        <div class="matrix-chip"><span class="chip-icon">📋</span>Оформить Highlights</div>
+        <div class="matrix-chip"><span class="chip-icon">✏️</span>Переписать все Bio</div>
+      </div>
+    </div>
+    <div class="matrix-cell">
+      <div class="matrix-cell-title" style="color: var(--muted);">⚫ Долгосрочно · Месяц 3+</div>
+      <div class="matrix-cell-items">
+        <div class="matrix-chip"><span class="chip-icon">🛒</span>TikTok Shop</div>
+        <div class="matrix-chip"><span class="chip-icon">📊</span>Таргетированная реклама</div>
+        <div class="matrix-chip"><span class="chip-icon">🌍</span>Международная экспансия</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── KPI ─── -->
+<section id="kpi" class="section page-break fade-in">
+  <div class="section-eyebrow">07 · Целевые показатели</div>
+  <h2 class="section-title">KPI на 12 месяцев</h2>
+
+  <table class="kpi-table">
+    <thead>
+      <tr>
+        <th>Платформа</th>
+        <th>Показатель</th>
+        <th>Сейчас</th>
+        <th>Цель: 3 мес.</th>
+        <th>Цель: 6 мес.</th>
+        <th>Цель: 12 мес.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-platform">📷 Instagram</td>
+        <td>Engagement Rate</td>
+        <td class="td-current">низкий</td>
+        <td class="td-target">5%+</td>
+        <td class="td-target">7%+</td>
+        <td class="td-target">10%+</td>
+      </tr>
+      <tr>
+        <td class="td-platform">📷 Instagram</td>
+        <td>Охват Reels</td>
+        <td class="td-current">—</td>
+        <td class="td-target">10 000+/видео</td>
+        <td class="td-target">50 000+/видео</td>
+        <td class="td-target">200 000+/видео</td>
+      </tr>
+      <tr>
+        <td class="td-platform">✈️ Telegram</td>
+        <td>Подписчики</td>
+        <td class="td-current">182</td>
+        <td class="td-target">500+</td>
+        <td class="td-target">2 000+</td>
+        <td class="td-target">5 000+</td>
+      </tr>
+      <tr>
+        <td class="td-platform">✈️ Telegram</td>
+        <td>Охват поста</td>
+        <td class="td-current">~50</td>
+        <td class="td-target">200+</td>
+        <td class="td-target">800+</td>
+        <td class="td-target">2 000+</td>
+      </tr>
+      <tr>
+        <td class="td-platform">📌 Pinterest</td>
+        <td>Подписчики</td>
+        <td class="td-current">1</td>
+        <td class="td-target">200+</td>
+        <td class="td-target">1 000+</td>
+        <td class="td-target">5 000+</td>
+      </tr>
+      <tr>
+        <td class="td-platform">📌 Pinterest</td>
+        <td>Ежемес. просмотры</td>
+        <td class="td-current">~0</td>
+        <td class="td-target">50 000+</td>
+        <td class="td-target">200 000+</td>
+        <td class="td-target">1 000 000+</td>
+      </tr>
+      <tr>
+        <td class="td-platform">🎵 TikTok</td>
+        <td>Подписчики</td>
+        <td class="td-current">0 (нет акк.)</td>
+        <td class="td-target">1 000+</td>
+        <td class="td-target">10 000+</td>
+        <td class="td-target">50 000+</td>
+      </tr>
+      <tr>
+        <td class="td-platform">🎵 TikTok</td>
+        <td>Просмотры видео</td>
+        <td class="td-current">0</td>
+        <td class="td-target">500 000+/мес.</td>
+        <td class="td-target">2 000 000+/мес.</td>
+        <td class="td-target">10 000 000+/мес.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:400; margin-bottom:32px; letter-spacing:.03em; margin-top:60px;">Рекомендуемый бюджет SMM</h3>
+
+  <div style="border: 1px solid var(--border);">
+    <div class="budget-row">
+      <div class="budget-item">SMM-менеджер (ведение всех каналов)</div>
+      <div class="budget-range">80 000 — 120 000 ₽/мес</div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-item">Контент-мейкер (фото + видео)</div>
+      <div class="budget-range">60 000 — 90 000 ₽/мес</div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-item">KOL-коллаборации (2–3 в месяц)</div>
+      <div class="budget-range">30 000 — 60 000 ₽/мес</div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-item">Таргетированная реклама Instagram</div>
+      <div class="budget-range">30 000 — 50 000 ₽/мес</div>
+    </div>
+    <div class="budget-row budget-total">
+      <div class="budget-item">ИТОГО · Полный SMM</div>
+      <div class="budget-range">200 000 — 320 000 ₽/мес</div>
+    </div>
+  </div>
+
+  <p style="font-size:11px; color:var(--muted); margin-top:16px; font-style:italic;">
+    * Для сравнения: один пост в ЦУМ обходится брендам в 300 000–500 000 ₽.
+    SMM за те же деньги даёт постоянный органический охват.
+  </p>
+</section>
+
+<!-- ─── CONCLUSION ─── -->
+<section class="conclusion">
+  <div class="conclusion-eyebrow">08 · Главный вывод</div>
+  <div class="conclusion-title">
+    Продукт готов.<br>
+    <em style="color:var(--gold-lt);">Нужен только голос.</em>
+  </div>
+  <div class="conclusion-text">
+    Sevenworlds уже сделал самое сложное — создал исключительный продукт
+    с уникальной философией и получил место на полке ЦУМ.
+    Цифровой разрыв — не приговор, это возможность.
+    Бренды с такой историей при правильной подаче
+    растут в 10–20 раз за год.
+  </div>
+  <div class="conclusion-metrics">
+    <div>
+      <div class="c-metric-value">4</div>
+      <div class="c-metric-label">Платформы для роста</div>
+    </div>
+    <div>
+      <div class="c-metric-value">90</div>
+      <div class="c-metric-label">Дней до результата</div>
+    </div>
+    <div>
+      <div class="c-metric-value">×20</div>
+      <div class="c-metric-label">Потенциал Telegram</div>
+    </div>
+    <div>
+      <div class="c-metric-value">1B</div>
+      <div class="c-metric-label">Аудитория TikTok</div>
+    </div>
+  </div>
+  <button class="conclusion-cta" onclick="window.print()">Скачать как PDF</button>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-brand">SEVENWORLDS</div>
+  <div class="footer-note">Аудит социальных сетей · Конфиденциальный документ · Май 2026</div>
+  <div class="footer-note">ru.theseventh.world</div>
+</footer>
+
+<script>
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
