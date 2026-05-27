@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevenworlds — Стратегия развития бренда</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --black: #0A0A08;
+    --dark: #111108;
+    --dark2: #1A1A14;
+    --dark3: #222218;
+    --text: #E8E4D8;
+    --text-muted: #9A9480;
+    --white: #FAF8F2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* НАВИГАЦИЯ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,8,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ГЕРОЙ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+    max-width: 700px;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 60px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    text-align: center;
+  }
+
+  .hero-meta-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-meta-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* РАЗДЕЛИТЕЛЬ */
+  .ornament {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--gold);
+    font-size: 20px;
+    letter-spacing: 0.5em;
+    opacity: 0.5;
+  }
+
+  /* СЕКЦИИ */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.4), transparent);
+    max-width: 200px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-lead {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 60px;
+    line-height: 1.9;
+  }
+
+  /* FULL-WIDTH СЕКЦИЯ */
+  .section-full {
+    background: var(--dark2);
+    padding: 100px 0;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  /* КАРТОЧКИ */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .card {
+    background: var(--dark2);
+    padding: 48px 40px;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s;
+  }
+
+  .card:hover::before { transform: scaleY(1); }
+  .card:hover { background: var(--dark3); border-color: rgba(201,168,76,0.3); }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .card-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    color: rgba(201,168,76,0.15);
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .card-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* БОЛЬШИЕ КАРТОЧКИ ВОРОНКИ */
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .funnel-step {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 0;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .funnel-step:hover { border-color: rgba(201,168,76,0.35); }
+
+  .funnel-number {
+    background: rgba(201,168,76,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    color: var(--gold);
+    border-right: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .funnel-info {
+    padding: 36px 40px;
+    border-right: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .funnel-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .funnel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .funnel-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .funnel-tools {
+    padding: 36px 40px;
+  }
+
+  .funnel-tools-title {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold-light);
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ТАБЛИЦА */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+  }
+
+  .data-table th {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .data-table td {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    font-size: 14px;
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .data-table tr:hover td {
+    background: rgba(201,168,76,0.04);
+  }
+
+  .data-table .highlight {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  /* ЦИТАТА */
+  .quote-block {
+    background: var(--dark2);
+    border-left: 3px solid var(--gold);
+    padding: 48px 60px;
+    margin: 60px 0;
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '❝';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: rgba(201,168,76,0.15);
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    padding-left: 40px;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    margin-top: 60px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.1));
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+    position: relative;
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 4px auto 0;
+    position: relative;
+    box-shadow: 0 0 20px rgba(201,168,76,0.4);
+    flex-shrink: 0;
+  }
+
+  .timeline-month {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .timeline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .timeline-items {
+    list-style: none;
+  }
+
+  .timeline-items li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    display: flex;
+    gap: 12px;
+  }
+
+  .timeline-items li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* СРАВНЕНИЕ */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .compare-col {
+    background: var(--dark2);
+    padding: 48px 40px;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .compare-col.highlight {
+    background: rgba(201,168,76,0.06);
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .compare-header {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .compare-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    font-size: 13px;
+  }
+
+  .compare-label { color: var(--text-muted); }
+  .compare-value { color: var(--text); }
+  .compare-value.gold { color: var(--gold); font-weight: 500; }
+
+  /* ТАРИФЫ */
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .price-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 48px 36px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .price-card.featured {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.4);
+  }
+
+  .price-card.featured::before {
+    content: 'РЕКОМЕНДУЕМ';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--black);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 6px 20px;
+    font-weight: 600;
+  }
+
+  .price-medal {
+    font-size: 36px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .price-name {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-period {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+
+  .price-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 36px;
+  }
+
+  .price-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 10px;
+  }
+
+  .price-features li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 36px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: transparent;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .btn:hover, .price-card.featured .btn {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* БОЛЬШИЕ ИДЕИ */
+  .ideas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .idea-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 48px 40px;
+    transition: all 0.3s;
+  }
+
+  .idea-card:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: var(--dark3);
+  }
+
+  .idea-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+
+  .idea-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .idea-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+
+  /* DAY IN LIFE */
+  .day-timeline {
+    margin-top: 40px;
+  }
+
+  .day-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 30px;
+    margin-bottom: 2px;
+  }
+
+  .day-time {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    padding: 24px;
+  }
+
+  .day-content {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.07);
+    padding: 24px 32px;
+  }
+
+  .day-content strong {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .day-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+
+  /* ФИНАЛЬНЫЙ БЛОК */
+  .cta-section {
+    background: linear-gradient(135deg, var(--dark2) 0%, rgba(201,168,76,0.08) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 80px 60px;
+    text-align: center;
+    margin: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '✦';
+    font-size: 200px;
+    color: rgba(201,168,76,0.04);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  .cta-contact {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-top: 40px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ФУТЕР */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* СТАТИСТИКА */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin: 60px 0;
+  }
+
+  .stat {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ПРОБЛЕМЫ */
+  .problems {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .problem-item {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 32px 36px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .problem-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .problem-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .problem-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .section { padding: 60px 20px; }
+    .funnel-step { grid-template-columns: 60px 1fr; }
+    .funnel-tools { display: none; }
+    .pricing { grid-template-columns: 1fr; }
+    .compare { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .problems { grid-template-columns: 1fr; }
+    .cta-section { padding: 60px 30px; margin: 40px 20px; }
+    .quote-block { padding: 40px 30px; }
+    .quote-text { padding-left: 20px; }
+    .hero-meta { gap: 30px; }
+  }
+
+  /* АНИМАЦИИ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.2s; }
+  .hero-subtitle { animation-delay: 0.3s; }
+  .hero-divider { animation-delay: 0.4s; }
+  .hero-meta { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- НАВИГАЦИЯ -->
+<nav>
+  <div class="nav-logo">Sevenworlds</div>
+  <ul class="nav-links">
+    <li><a href="#brand">Бренд</a></li>
+    <li><a href="#market">Рынок</a></li>
+    <li><a href="#smm">SMM</a></li>
+    <li><a href="#funnel">Воронка</a></li>
+    <li><a href="#plan">План</a></li>
+    <li><a href="#jarvis">Jarvis</a></li>
+  </ul>
+</nav>
+
+<!-- ГЕРОЙ -->
+<section class="hero">
+  <p class="hero-eyebrow">Стратегический анализ · Май 2026</p>
+  <h1 class="hero-title">Seven<em>worlds</em></h1>
+  <p class="hero-subtitle">Стратегия реанимации бренда, SMM-воронка и персональный AI-агент для директора</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-number">9</span>
+      <span class="hero-meta-label">точек продаж</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-number">33К</span>
+      <span class="hero-meta-label">рублей — флагман</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-number">90</span>
+      <span class="hero-meta-label">дней до результата</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-number">×3</span>
+      <span class="hero-meta-label">рост продаж — цель</span>
+    </div>
+  </div>
+</section>
+
+<div class="ornament">· · ✦ · ·</div>
+
+<!-- АНАЛИЗ БРЕНДА -->
+<section class="section" id="brand">
+  <div class="section-eyebrow">Часть I</div>
+  <h2 class="section-title">Анализ<br><em>бренда</em></h2>
+  <p class="section-lead">Sevenworlds — российский бренд дизайнерских украшений, основанный в 2019 году Екатериной Цатурян. Вдохновение — архитектура и культурное наследие семи континентов, интерьеры великих храмов мира.</p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="card-number">01</span>
+      <span class="card-icon">🏛️</span>
+      <h3 class="card-title">Концепция</h3>
+      <p class="card-text">«Сохраняя воспоминания живыми» — каждое украшение несёт историю места, которое изменило мир. Армянские монастыри, индийская мифология нага, храм Покрова на Нерли.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">02</span>
+      <span class="card-icon">⚗️</span>
+      <h3 class="card-title">Материалы</h3>
+      <p class="card-text">Бронза с покрытием 999-го золота или платина + родий. Ручное литьё по выплавляемым моделям. Натуральный жемчуг и органические полудрагоценные камни.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">03</span>
+      <span class="card-icon">👑</span>
+      <h3 class="card-title">Позиционирование</h3>
+      <p class="card-text">Accessible luxury. Присутствие в ЦУМ (Петровка 2) и Poison Drop в России, Дубае. Ценовой диапазон: от 5 200 до 33 000 рублей.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">04</span>
+      <span class="card-icon">🌍</span>
+      <h3 class="card-title">География</h3>
+      <p class="card-text">Москва, Санкт-Петербург, Краснодар, Казань, Новосибирск — и международное присутствие в Dubai Hills Mall, ОАЭ.</p>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top: 60px;">
+    <p class="quote-text">Sevenworlds обладает редчайшим активом — подлинной историей и академическим фундаментом. Конкуренты копируют форму, но не могут скопировать душу.</p>
+  </div>
+</section>
+
+<!-- ПРОБЛЕМЫ -->
+<div class="section-full">
+  <div class="section">
+    <div class="section-eyebrow">Диагностика</div>
+    <h2 class="section-title">Почему падают<br><em>продажи</em></h2>
+    <p class="section-lead">Sevenworlds страдает не от слабого продукта, а от слабой коммуникации его ценности. Покупатель не понимает, почему стоит заплатить 33 000 рублей за бронзу с покрытием.</p>
+
+    <div class="problems">
+      <div class="problem-item">
+        <span class="problem-icon">📉</span>
+        <div>
+          <h3 class="problem-title">Рынок падает в штуках</h3>
+          <p class="problem-text">Продажи украшений в России -3% (2025), золото -26,8%. Покупатель ищет альтернативы и смысл.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">📱</span>
+        <div>
+          <h3 class="problem-title">Слабое SMM-присутствие</h3>
+          <p class="problem-text">Аккаунты бренда не обнаруживаются в органическом поиске. Нет сформированного сообщества.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">🛒</span>
+        <div>
+          <h3 class="problem-title">Нулевой остаток в Poison Drop</h3>
+          <p class="problem-text">На странице бренда в Poison Drop — 0 товаров в наличии. Главная витрина не работает.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">🌐</span>
+        <div>
+          <h3 class="problem-title">Сайт с ошибками</h3>
+          <p class="problem-text">Ряд страниц недоступен (404). История и философия бренда не видна с первого экрана.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">💡</span>
+        <div>
+          <h3 class="problem-title">Ценность не объяснена</h3>
+          <p class="problem-text">Аудитория не понимает разницу между масс-маркетом и украшением с 999 золотом и историей храма.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">🏪</span>
+        <div>
+          <h3 class="problem-title">Маркетплейсы давят</h3>
+          <p class="problem-text">Wildberries +70%, Ozon +53% — забирают трафик у всех. Нужно строить собственную аудиторию.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- РЫНОК -->
+<section class="section" id="market">
+  <div class="section-eyebrow">Часть II</div>
+  <h2 class="section-title">Анализ<br><em>рынка</em></h2>
+  <p class="section-lead">Российский ювелирный рынок демонстрирует парадокс: деньги растут, штуки падают. Это открывает нишу для брендов с сильным смыслом и историей.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">459₽</div>
+      <div class="stat-label">млрд — объём рынка 2024</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">−3%</div>
+      <div class="stat-label">продажи в штуках 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">+70%</div>
+      <div class="stat-label">рост Wildberries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">+25%</div>
+      <div class="stat-label">рост персонализации</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <tr>
+      <th>Конкурент</th>
+      <th>УТП</th>
+      <th>Сила</th>
+      <th>Уязвимость</th>
+    </tr>
+    <tr>
+      <td class="highlight">AVGVST</td>
+      <td>«Украшения для тех, кто не носит»</td>
+      <td>Сильнейший брендинг, ЦУМ</td>
+      <td>Нет культурной глубины</td>
+    </tr>
+    <tr>
+      <td class="highlight">Ringstone</td>
+      <td>Contemporary Fine Jewelry</td>
+      <td>Ручная работа, статус</td>
+      <td>Закрытая аудитория</td>
+    </tr>
+    <tr>
+      <td class="highlight">Wanna?Be!</td>
+      <td>«Украшения для всех»</td>
+      <td>Широкий охват</td>
+      <td>Нет премиума</td>
+    </tr>
+    <tr>
+      <td class="highlight" style="color: var(--gold-light);">Sevenworlds ✦</td>
+      <td><strong style="color: var(--text);">«Украшение-артефакт с историей»</strong></td>
+      <td><strong style="color: var(--gold);">Незанятая ниша</strong></td>
+      <td>Пока слабый охват</td>
+    </tr>
+  </table>
+</section>
+
+<div class="ornament">· · ✦ · ·</div>
+
+<!-- SMM СТРАТЕГИЯ -->
+<section class="section" id="smm">
+  <div class="section-eyebrow">Часть III</div>
+  <h2 class="section-title">SMM-<em>стратегия</em></h2>
+  <p class="section-lead">Задача SMM — не «продавать украшения», а продавать ощущение причастности к чему-то вечному. Когда человек это почувствует — он купит сам.</p>
+
+  <div class="quote-block">
+    <p class="quote-text">Украшение Sevenworlds — это конденсат истории, упакованный в металл. Лента в Instagram должна выглядеть как музей с живой душой.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <span class="card-icon">📸</span>
+      <h3 class="card-title">Instagram</h3>
+      <p class="card-text">Главный канал. Reels 3×/нед, карусели 2×/нед, Stories ежедневно. Лента = журнал об искусстве с украшениями в главной роли.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🎵</span>
+      <h3 class="card-title">TikTok</h3>
+      <p class="card-text">Вирусный охват. 5 видео в неделю. ASMR литья, истории храмов, процесс создания. Обязателен для запуска — сейчас.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">💬</span>
+      <h3 class="card-title">Telegram</h3>
+      <p class="card-text">Канал «Хранители миров» — образовательный контент, эксклюзивные офферы, голосовые из путешествий основателя.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🤝</span>
+      <h3 class="card-title">Инфлюенсеры</h3>
+      <p class="card-text">Микро 10–100К: архитекторы, travel-блогеры, историки, slow fashion, медитация и духовность. Не звёзды — а нишевые голоса.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ВОРОНКА -->
+<div class="section-full" id="funnel">
+  <div class="section">
+    <div class="section-eyebrow">Часть IV</div>
+    <h2 class="section-title">Воронка<br><em>продаж</em></h2>
+    <p class="section-lead">Пять уровней превращают случайного зрителя в преданного амбассадора бренда.</p>
+
+    <div class="funnel">
+
+      <div class="funnel-step">
+        <div class="funnel-number">I</div>
+        <div class="funnel-info">
+          <p class="funnel-label">Awareness</p>
+          <h3 class="funnel-title">Осведомлённость</h3>
+          <p class="funnel-desc">Человек впервые видит бренд через вирусный контент, таргет или коллаборацию. Цель — запомниться.</p>
+        </div>
+        <div class="funnel-tools">
+          <p class="funnel-tools-title">Инструменты</p>
+          <div class="tags">
+            <span class="tag">TikTok ASMR</span>
+            <span class="tag">Instagram Reels</span>
+            <span class="tag">Таргет ВК</span>
+            <span class="tag">Микроинфлюенсеры</span>
+            <span class="tag">PR-статьи</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-number">II</div>
+        <div class="funnel-info">
+          <p class="funnel-label">Interest</p>
+          <h3 class="funnel-title">Интерес</h3>
+          <p class="funnel-desc">Подписался и изучает. Попадает в идеально выстроенный профиль и лид-магнит — PDF «История 7 храмов».</p>
+        </div>
+        <div class="funnel-tools">
+          <p class="funnel-tools-title">Инструменты</p>
+          <div class="tags">
+            <span class="tag">Highlights</span>
+            <span class="tag">Stories опросы</span>
+            <span class="tag">Лид-магнит PDF</span>
+            <span class="tag">Welcome e-mail</span>
+            <span class="tag">Прямые эфиры</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-number">III</div>
+        <div class="funnel-info">
+          <p class="funnel-label">Desire</p>
+          <h3 class="funnel-title">Желание</h3>
+          <p class="funnel-desc">Хочет, но не решился. Снимаем страхи через доказательства ценности и создаём срочность.</p>
+        </div>
+        <div class="funnel-tools">
+          <p class="funnel-tools-title">Инструменты</p>
+          <div class="tags">
+            <span class="tag">UGC-отзывы</span>
+            <span class="tag">Распаковки</span>
+            <span class="tag">Лимитированность</span>
+            <span class="tag">Ретаргет</span>
+            <span class="tag">Промокод</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-number">IV</div>
+        <div class="funnel-info">
+          <p class="funnel-label">Action</p>
+          <h3 class="funnel-title">Покупка</h3>
+          <p class="funnel-desc">Покупает. WOW-упаковка с историей храма внутри. QR-код на видео от основателя. Опыт, а не просто покупка.</p>
+        </div>
+        <div class="funnel-tools">
+          <p class="funnel-tools-title">Инструменты</p>
+          <div class="tags">
+            <span class="tag">Скрипты Direct</span>
+            <span class="tag">WOW-упаковка</span>
+            <span class="tag">QR на историю</span>
+            <span class="tag">Быстрый ответ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-number">V</div>
+        <div class="funnel-info">
+          <p class="funnel-label">Loyalty</p>
+          <h3 class="funnel-title">Преданность</h3>
+          <p class="funnel-desc">Становится амбассадором. Программа «Хранители» с привилегиями, ранним доступом и персональными офферами.</p>
+        </div>
+        <div class="funnel-tools">
+          <p class="funnel-tools-title">Инструменты</p>
+          <div class="tags">
+            <span class="tag">Клуб Хранители</span>
+            <span class="tag">UGC #sevenworlds</span>
+            <span class="tag">Ранний доступ</span>
+            <span class="tag">Амбассадоры</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ПЛАН 90 ДНЕЙ -->
+<section class="section" id="plan">
+  <div class="section-eyebrow">Часть V</div>
+  <h2 class="section-title">План реанимации<br><em>90 дней</em></h2>
+  <p class="section-lead">Три месяца — три фазы: фундамент, рост, масштаб. Конкретные шаги с измеримым результатом.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <p class="timeline-month">Месяц 1 · Дни 1–30</p>
+        <h3 class="timeline-title">Фундамент</h3>
+        <ul class="timeline-items">
+          <li>Починить сайт — убрать все 404 ошибки</li>
+          <li>Восстановить ассортимент в Poison Drop</li>
+          <li>Написать историю каждого изделия</li>
+          <li>Создать TikTok-аккаунт</li>
+          <li>Нанять SMM-менеджера и контент-мейкера</li>
+          <li>Снять пул контента на 30 дней (2 дня съёмки)</li>
+          <li>Новый манифест бренда — тема храмов</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div>
+        <div class="timeline-dot" style="background: var(--gold-light);"></div>
+      </div>
+      <div>
+        <p class="timeline-month">Месяц 2 · Дни 31–60</p>
+        <h3 class="timeline-title">Рост</h3>
+        <ul class="timeline-items">
+          <li>Регулярный постинг по контент-плану (10 постов/нед)</li>
+          <li>Первые 8 Reels на тему «история украшения»</li>
+          <li>Коллаборации с 3–5 микроинфлюенсерами (бартер)</li>
+          <li>Запуск флагманской коллекции «Сакральное»</li>
+          <li>E-mail рассылка — welcome-серия</li>
+          <li>Промокод для подписчиков (-10%)</li>
+          <li>Питч в 2–3 нишевых медиа</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div>
+        <div class="timeline-dot" style="background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3);"></div>
+      </div>
+      <div>
+        <p class="timeline-month">Месяц 3 · Дни 61–90</p>
+        <h3 class="timeline-title">Масштаб</h3>
+        <ul class="timeline-items">
+          <li>Telegram-канал «Хранители миров»</li>
+          <li>UGC-кампания #sevenworlds_story</li>
+          <li>Первое офлайн-событие — презентация коллекции</li>
+          <li>Программа амбассадоров — первые 5 человек</li>
+          <li>Контент на английском для Dubai-аудитории</li>
+          <li>Отчёт: охваты, конверсия, выручка</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 БОЛЬШИХ ИДЕЙ -->
+<div class="section-full">
+  <div class="section">
+    <div class="section-eyebrow">Особые идеи</div>
+    <h2 class="section-title">5 идей для<br><em>рывка</em></h2>
+    <div class="ideas">
+      <div class="idea-card">
+        <p class="idea-number">Идея 01</p>
+        <h3 class="idea-title">Украшение как паломничество</h3>
+        <p class="idea-text">QR-код на каждом изделии → страница с историей места, архивными фото, звуком колокола. Украшение становится опытом, а не просто вещью.</p>
+      </div>
+      <div class="idea-card">
+        <p class="idea-number">Идея 02</p>
+        <h3 class="idea-title">Коллаборация с историками</h3>
+        <p class="idea-text">Совместная капсула с архитектурным блогером или медиевистом. Одновременно PR, охват и экспертная легитимность.</p>
+      </div>
+      <div class="idea-card">
+        <p class="idea-number">Идея 03</p>
+        <h3 class="idea-title">«Именное от паломника»</h3>
+        <p class="idea-text">Лимитированные серии по конкретным поездкам основателя — «Я была в Хайя-Софии». Сторителлинг + ограниченность = ажиотаж.</p>
+      </div>
+      <div class="idea-card">
+        <p class="idea-number">Идея 04</p>
+        <h3 class="idea-title">Travel-бутики</h3>
+        <p class="idea-text">Партнёрство с туристическими агентствами — украшения как сувенир нового типа. Продажа в travel-бутиках и аэропортах.</p>
+      </div>
+      <div class="idea-card">
+        <p class="idea-number">Идея 05</p>
+        <h3 class="idea-title">«Закажи по своему месту»</h3>
+        <p class="idea-text">«Назови любимый храм или город — получи эскиз и изделие». Тренд персонализации растёт на +25% в год в премиуме.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ornament">· · ✦ · ·</div>
+
+<!-- JARVIS -->
+<section class="section" id="jarvis">
+  <div class="section-eyebrow">Часть VI · Специальное предложение</div>
+  <h2 class="section-title">AI-агент<br><em>Jarvis</em></h2>
+  <p class="section-lead">Персональный AI-директор для Екатерины. Работает 24/7, знает бизнес лучше любого сотрудника, всегда рядом — в Москве и в любом путешествии по миру.</p>
+
+  <div class="compare">
+    <div class="compare-col">
+      <h3 class="compare-header">Обычный ассистент</h3>
+      <div class="compare-item"><span class="compare-label">Время работы</span><span class="compare-value">8 ч/день</span></div>
+      <div class="compare-item"><span class="compare-label">Скорость ответа</span><span class="compare-value">30 мин — часы</span></div>
+      <div class="compare-item"><span class="compare-label">Стоимость</span><span class="compare-value">80–150 тыс./мес</span></div>
+      <div class="compare-item"><span class="compare-label">Больничные/отпуск</span><span class="compare-value">Да</span></div>
+      <div class="compare-item"><span class="compare-label">В путешествии</span><span class="compare-value">Недоступен</span></div>
+      <div class="compare-item"><span class="compare-label">Знание бизнеса</span><span class="compare-value">Месяцы обучения</span></div>
+    </div>
+    <div class="compare-col highlight">
+      <h3 class="compare-header" style="color: var(--gold);">Jarvis ✦</h3>
+      <div class="compare-item"><span class="compare-label">Время работы</span><span class="compare-value gold">24 / 7 / 365</span></div>
+      <div class="compare-item"><span class="compare-label">Скорость ответа</span><span class="compare-value gold">Мгновенно</span></div>
+      <div class="compare-item"><span class="compare-label">Стоимость</span><span class="compare-value gold">В разы дешевле</span></div>
+      <div class="compare-item"><span class="compare-label">Больничные/отпуск</span><span class="compare-value gold">Никогда</span></div>
+      <div class="compare-item"><span class="compare-label">В путешествии</span><span class="compare-value gold">Всегда рядом</span></div>
+      <div class="compare-item"><span class="compare-label">Знание бизнеса</span><span class="compare-value gold">Настройка за 1 день</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ДЕНЬ С JARVIS -->
+<div class="section-full">
+  <div class="section">
+    <div class="section-eyebrow">Как это работает</div>
+    <h2 class="section-title">День из жизни<br><em>с Jarvis</em></h2>
+
+    <div class="day-timeline">
+      <div class="day-item">
+        <div class="day-time">07:00</div>
+        <div class="day-content">
+          <strong>Утренний дайджест</strong>
+          <p>Jarvis присылает: продажи за вчера, упоминания бренда, 3 приоритета на день, погоду в точке назначения</p>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">09:00</div>
+        <div class="day-content">
+          <strong>Работа с партнёрами</strong>
+          <p>«Напиши письмо в Poison Drop о коллекции» → готовый профессиональный текст за 30 секунд</p>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">11:00</div>
+        <div class="day-content">
+          <strong>В самолёте в Тбилиси</strong>
+          <p>«Найди 5 самых красивых храмов для съёмки и запишись на гида» → всё готово до посадки</p>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">14:00</div>
+        <div class="day-content">
+          <strong>Контент из путешествия</strong>
+          <p>«Придумай 7 идей для Reels по грузинской архитектуре + украшение» → готовый контент-план</p>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">20:00</div>
+        <div class="day-content">
+          <strong>Итоги дня</strong>
+          <p>«Сформируй итоги и план на завтра» → структурированный recap и расставленные приоритеты</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ТАРИФЫ -->
+<section class="section">
+  <div class="section-eyebrow">Стоимость</div>
+  <h2 class="section-title">Тарифы<br><em>Jarvis</em></h2>
+
+  <div class="pricing">
+    <div class="price-card">
+      <span class="price-medal">🥉</span>
+      <p class="price-name">Старт</p>
+      <div class="price-amount">15К</div>
+      <p class="price-period">рублей / месяц</p>
+      <ul class="price-features">
+        <li>Настройка агента под Sevenworlds</li>
+        <li>Подключение Telegram</li>
+        <li>3 блока задач</li>
+        <li>Поддержка 30 дней</li>
+      </ul>
+      <button class="btn">Начать</button>
+    </div>
+
+    <div class="price-card featured">
+      <span class="price-medal">🥈</span>
+      <p class="price-name">Бизнес</p>
+      <div class="price-amount">35К</div>
+      <p class="price-period">рублей / месяц</p>
+      <ul class="price-features">
+        <li>Всё из тарифа Старт</li>
+        <li>Почта + календарь + таблицы</li>
+        <li>Все 12 блоков задач</li>
+        <li>Еженедельная настройка</li>
+        <li>Персональный стиль общения</li>
+      </ul>
+      <button class="btn">Выбрать</button>
+    </div>
+
+    <div class="price-card">
+      <span class="price-medal">🥇</span>
+      <p class="price-name">Директор</p>
+      <div class="price-amount">65К</div>
+      <p class="price-period">рублей / месяц</p>
+      <ul class="price-features">
+        <li>Всё из тарифа Бизнес</li>
+        <li>CRM и система заказов</li>
+        <li>Travel-ассистент + бронирование</li>
+        <li>Мониторинг рынка еженедельно</li>
+        <li>Интеграция с сайтом и аналитикой</li>
+      </ul>
+      <button class="btn">Выбрать</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="cta-title">Готовы начать?</h2>
+  <p class="cta-subtitle">Предлагаем бесплатную демо-сессию 45 минут. Екатерина задаёт реальные задачи — Jarvis решает их прямо на встрече. Без обязательств.</p>
+  <button class="btn" style="width: auto; padding: 20px 60px; font-size: 12px;">Записаться на демо</button>
+  <div class="hero-divider" style="margin-top: 48px;"></div>
+  <p class="cta-contact">alenaprasol@tutamail.com · Telegram: @elenaprasolova</p>
+</div>
+
+<!-- ФУТЕР -->
+<footer>
+  <p class="footer-logo">Sevenworlds</p>
+  <p class="footer-text">Стратегический анализ · Май 2026 · Конфиденциально</p>
+</footer>
+
+</body>
+</html>
