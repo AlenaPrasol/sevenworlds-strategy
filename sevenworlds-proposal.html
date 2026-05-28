@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Предложение о сотрудничестве — Sevenworlds</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:  #F7F4EE;
+  --cream2: #EFEBE2;
+  --cream3: #E8E3D8;
+  --white:  #FDFCF9;
+  --black:  #1A1815;
+  --dark:   #2E2B26;
+  --muted:  #8A8070;
+  --gold:   #B5914A;
+  --gold2:  #C9A55C;
+  --border: #DDD8CE;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--white);
+  color: var(--dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* ─── ПЕЧАТЬ ─── */
+@media print {
+  .print-btn { display: none !important; }
+  section { break-inside: avoid; }
+}
+
+/* ─── КНОПКА ПЕЧАТИ ─── */
+.print-btn {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  background: var(--gold);
+  color: var(--white);
+  border: none;
+  padding: 14px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 100;
+  transition: background .2s;
+}
+.print-btn:hover { background: var(--gold2); }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--black);
+  color: var(--cream);
+  padding: 100px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 10% 50%, rgba(181,145,74,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 90% 20%, rgba(181,145,74,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-tag {
+  font-size: 9px;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+  opacity: .5;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+}
+.hero-title em {
+  font-style: italic;
+  color: rgba(247,244,238,0.5);
+}
+.hero-sub {
+  font-size: 13px;
+  color: rgba(247,244,238,0.5);
+  max-width: 520px;
+  line-height: 1.9;
+  margin-bottom: 56px;
+}
+.hero-from {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-from-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+}
+.hero-from-role {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.35);
+  margin-top: 4px;
+}
+.hero-divider {
+  width: 1px; height: 40px;
+  background: rgba(255,255,255,0.12);
+}
+.hero-date {
+  font-size: 10px;
+  color: rgba(247,244,238,0.25);
+  letter-spacing: .12em;
+}
+
+/* ─── ОБЩИЕ СТИЛИ СЕКЦИЙ ─── */
+section {
+  padding: 80px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-tag {
+  font-size: 8px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 40px;
+  letter-spacing: .02em;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ─── РАЗДЕЛИТЕЛЬ ─── */
+.sep {
+  height: 1px;
+  background: var(--border);
+  margin: 0 80px;
+}
+
+/* ─── ДИАГНОЗ ─── */
+.diagnosis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  margin-bottom: 40px;
+}
+.diag-block {
+  background: var(--white);
+  padding: 40px;
+}
+.diag-block.bad { background: #FAF8F5; }
+.diag-block.good { background: #F7F4EE; }
+.diag-label {
+  font-size: 8px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.diag-label.bad-label { color: var(--muted); }
+.diag-label.good-label { color: var(--gold); }
+.diag-label::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: currentColor;
+}
+.diag-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--dark);
+}
+.diag-item:last-child { border-bottom: none; }
+.diag-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--black);
+  min-width: 60px;
+  line-height: 1;
+}
+.diag-num.red { color: #C17B5A; }
+.diag-num.gold { color: var(--gold); }
+.diag-text {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.diagnosis-quote {
+  background: var(--cream2);
+  border-left: 3px solid var(--gold);
+  padding: 28px 36px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* ─── ЧТО УЖЕ СДЕЛАНО ─── */
+.done-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 40px;
+}
+.done-card {
+  background: var(--white);
+  padding: 32px 28px;
+}
+.done-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+.done-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.done-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.done-badge {
+  display: inline-block;
+  font-size: 7px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(181,145,74,0.12);
+  padding: 4px 10px;
+  margin-top: 16px;
+}
+
+.done-note {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  padding: 16px;
+}
+
+/* ─── ЧТО ПРЕДЛАГАЮ ─── */
+.offer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.offer-col-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.offer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.offer-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--dark);
+}
+.offer-list li::before {
+  content: '✓';
+  color: var(--gold);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.offer-list.no li::before {
+  content: '—';
+  color: var(--muted);
+  opacity: .5;
+}
+.offer-list.no li {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(138,128,112,0.3);
+}
+
+/* ─── КТО Я ─── */
+.about-block {
+  background: var(--cream2);
+  padding: 56px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.about-left .section-title { margin-bottom: 20px; }
+.about-text {
+  font-size: 13px;
+  color: var(--dark);
+  line-height: 2;
+  margin-bottom: 20px;
+}
+.about-text strong {
+  color: var(--black);
+  font-weight: 500;
+}
+.about-honest {
+  background: var(--white);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.8;
+}
+.about-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+}
+.fact-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.fact-item:last-child { border-bottom: none; }
+.fact-label {
+  font-size: 8px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.fact-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.fact-note {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ─── УСЛОВИЯ ─── */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 40px;
+}
+.option-card {
+  background: var(--white);
+  padding: 36px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.option-card.recommended {
+  background: var(--cream2);
+  border-top: 3px solid var(--gold);
+}
+.option-rec-badge {
+  display: none;
+  font-size: 7px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.option-card.recommended .option-rec-badge { display: block; }
+.option-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: rgba(181,145,74,0.15);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.option-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.option-price {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: .1em;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.option-price strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--black);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.option-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  margin-bottom: 20px;
+}
+.option-items li {
+  font-size: 11px;
+  color: var(--muted);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.option-items li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  opacity: .5;
+}
+.option-exit {
+  font-size: 10px;
+  color: var(--muted);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+/* ─── KPI ─── */
+.kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+.kpi-table th {
+  font-size: 8px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 12px 20px;
+  text-align: left;
+  background: var(--cream2);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+.kpi-table td {
+  padding: 14px 20px;
+  font-size: 12px;
+  color: var(--dark);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.kpi-table tr:last-child td { border-bottom: none; }
+.kpi-table tr:hover td { background: var(--cream); }
+.kpi-platform {
+  font-weight: 500;
+  color: var(--black);
+  font-size: 13px;
+}
+.kpi-now { color: var(--muted); }
+.kpi-goal { color: var(--gold); font-weight: 500; }
+.kpi-how { color: var(--muted); font-size: 11px; }
+
+/* ─── ФИНАЛ ─── */
+.final {
+  background: var(--black);
+  color: var(--cream);
+  padding: 80px;
+  text-align: center;
+}
+.final-inner { max-width: 680px; margin: 0 auto; }
+.final-eyebrow {
+  font-size: 9px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.final-eyebrow::before, .final-eyebrow::after {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold); opacity: .4;
+}
+.final-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+}
+.final-text {
+  font-size: 13px;
+  color: rgba(247,244,238,0.45);
+  line-height: 2;
+  margin-bottom: 56px;
+}
+.final-links {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.final-link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 24px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.04);
+  color: rgba(247,244,238,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all .3s;
+}
+.final-link:hover {
+  background: rgba(181,145,74,0.12);
+  color: var(--gold);
+  border-color: rgba(181,145,74,0.3);
+}
+.final-link.main {
+  background: rgba(181,145,74,0.15);
+  color: var(--gold);
+  border-color: rgba(181,145,74,0.35);
+}
+.final-sign {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.final-sign-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(247,244,238,0.6);
+  margin-bottom: 6px;
+}
+.final-sign-role {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.2);
+}
+
+/* ─── АДАПТИВ ─── */
+@media (max-width: 800px) {
+  .hero { padding: 60px 32px; }
+  section { padding: 56px 32px; }
+  .sep { margin: 0 32px; }
+  .diagnosis-grid, .offer-row, .about-block, .options-grid, .done-grid { grid-template-columns: 1fr; }
+  .final { padding: 60px 32px; }
+  .final-links { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">↓ Сохранить PDF</button>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Персональное предложение · Май 2026</div>
+    <h1 class="hero-title">
+      Давай попробуем<br>
+      <em>поднять Sevenworlds</em><br>
+      вместе
+    </h1>
+    <p class="hero-sub">
+      Я изучила твой бренд, провела анализ рынка и соцсетей, написала стратегию и манифест —
+      ещё до того как попросила хоть рубль. Вот что я увидела, и вот что предлагаю.
+    </p>
+    <div class="hero-from">
+      <div>
+        <div class="hero-from-name">Елена Прасолова</div>
+        <div class="hero-from-role">Контент-стратег · AI-специалист</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-date">Май 2026<br>Для Екатерины Цатурян</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ДИАГНОЗ ═══════════════ -->
+<section>
+  <div class="section-tag">Секция 01 — Что я вижу</div>
+  <h2 class="section-title">Твой бренд сильный.<br><em>Его просто не видно в интернете.</em></h2>
+
+  <div class="diagnosis-grid">
+    <div class="diag-block bad">
+      <div class="diag-label bad-label">Цифровое присутствие — сейчас</div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num red">182</div>
+          <div class="diag-text">подписчика в Telegram<br>при огромном потенциале</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num red">1</div>
+          <div class="diag-text">подписчик в Pinterest —<br>платформа фактически мертва</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num red">0</div>
+          <div class="diag-text">видеоконтента — TikTok<br>не запущен вообще</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num red">↓</div>
+          <div class="diag-text">падение продаж несмотря на<br>сильный офлайн-бренд</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-block good">
+      <div class="diag-label good-label">Что у тебя на самом деле есть</div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num gold">ЦУМ</div>
+          <div class="diag-text">присутствие в главном<br>универмаге страны</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num gold">6</div>
+          <div class="diag-text">городов в Poison Drop —<br>реальная федеральная сеть</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num gold">Dubai</div>
+          <div class="diag-text">присутствие в Dubai Hills Mall —<br>международный рынок открыт</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div>
+          <div class="diag-num gold">999</div>
+          <div class="diag-text">золото и ручная работа —<br>история которую хочется рассказать</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagnosis-quote">
+    «Украшения с историей храмов мира — в ЦУМе и Дубае, но невидимы в TikTok.
+    Это не кризис бренда. Это незаполненная ниша, которую кто-то займёт раньше тебя.»
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════════ ЧТО СДЕЛАНО ═══════════════ -->
+<section>
+  <div class="section-tag">Секция 02 — Что я уже сделала</div>
+  <h2 class="section-title">Три документа.<br><em>До того как мы договорились.</em></h2>
+
+  <div class="done-grid">
+    <div class="done-card">
+      <span class="done-icon">📊</span>
+      <div class="done-title">Стратегия развития бренда</div>
+      <div class="done-desc">
+        Полный стратегический документ: анализ рынка 459 млрд ₽, конкуренты,
+        SMM-стратегия для 4 платформ, 5-уровневая воронка продаж, 90-дневный план реанимации.
+      </div>
+      <div class="done-badge">Готово</div>
+    </div>
+    <div class="done-card">
+      <span class="done-icon">📱</span>
+      <div class="done-title">Аудит социальных сетей</div>
+      <div class="done-desc">
+        Детальный разбор каждой платформы: что тормозит рост, конкретные шаги для каждого канала,
+        KPI на 3 / 6 / 12 месяцев, рекомендуемый бюджет.
+      </div>
+      <div class="done-badge">Готово</div>
+    </div>
+    <div class="done-card">
+      <span class="done-icon">📜</span>
+      <div class="done-title">Манифест бренда</div>
+      <div class="done-desc">
+        Философский фундамент Sevenworlds: 7 убеждений, 9 храмов-украшений, 3 портрета покупательниц,
+        таблица голоса бренда, обещание покупателю.
+      </div>
+      <div class="done-badge">Готово</div>
+    </div>
+  </div>
+
+  <div class="done-note">
+    Все документы доступны онлайн — могу показать на встрече или прислать ссылки прямо сейчас
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════════ ЧТО ПРЕДЛАГАЮ ═══════════════ -->
+<section>
+  <div class="section-tag">Секция 03 — Что предлагаю делать</div>
+  <h2 class="section-title">Честно о том,<br><em>что буду делать и что — нет.</em></h2>
+
+  <div class="offer-row">
+    <div>
+      <div class="offer-col-title">✓ &ensp;Берусь делать</div>
+      <ul class="offer-list">
+        <li>Контент-план на каждый месяц</li>
+        <li>Тексты для постов в Instagram и Telegram</li>
+        <li>Сторис — сценарии и тексты</li>
+        <li>Ведение Telegram-канала «Хранители миров»</li>
+        <li>Хэштеги, CTA, структура публикаций</li>
+        <li>Скрипты для Reels и TikTok-видео</li>
+        <li>Email-воронка (серия из 5 писем)</li>
+        <li>Питчи в медиа и письма инфлюенсерам</li>
+        <li>Ежемесячная аналитика и отчёт</li>
+        <li>Тексты для сайта и карточек товаров</li>
+      </ul>
+    </div>
+    <div>
+      <div class="offer-col-title" style="color: var(--muted)">— &ensp;Пока не берусь</div>
+      <ul class="offer-list no">
+        <li>Профессиональные фотосессии украшений</li>
+        <li>Полноценное AI-видео для TikTok (учусь)</li>
+        <li>Таргетированная реклама и настройка кабинета</li>
+        <li>Гарантии конкретных продаж</li>
+        <li>Работа с маркетплейсами (Ozon, Wildberries)</li>
+      </ul>
+      <div style="margin-top: 24px; padding: 20px; background: var(--cream2); font-size: 11px; color: var(--muted); line-height: 1.8; font-style: italic;">
+        Я лучше скажу «не буду» сейчас, чем подведу потом.
+        То что беру — сделаю хорошо.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════════ КТО Я ═══════════════ -->
+<section>
+  <div class="section-tag">Секция 04 — Кто я</div>
+  <div class="about-block">
+    <div class="about-left">
+      <h2 class="section-title" style="font-size: clamp(26px, 3vw, 38px);">Начинающий<br>специалист.<br><em>Честно.</em></h2>
+      <p class="about-text">
+        У меня нет портфолио из 20 крупных кейсов. Нет команды в офисе.
+        Нет громкого агентского имени.
+      </p>
+      <p class="about-text">
+        Зато я <strong>уже потратила время на твой бренд</strong> — прежде чем попросить что-либо.
+        Я изучила рынок, конкурентов, историю украшений, архетипы твоих покупательниц.
+        Я работаю с <strong>AI-инструментами последнего поколения</strong> — это мой главный ресурс.
+      </p>
+      <p class="about-text">
+        Я прохожу обучение прямо сейчас. Мне важно сделать первый серьёзный кейс —
+        и именно поэтому условия, которые я предлагаю, выгодны для тебя.
+      </p>
+      <div class="about-honest">
+        «Я использую AI в работе — это не секрет. Он помогает писать тексты и анализировать данные.
+        Но стратегию, понимание твоего бренда и коммуникацию с тобой — это я.
+        AI — мой инструмент, как у дизайнера Photoshop.»
+      </div>
+    </div>
+    <div>
+      <div class="about-facts">
+        <div class="fact-item">
+          <div class="fact-label">Что умею</div>
+          <div class="fact-value">Контент и стратегия</div>
+          <div class="fact-note">Тексты, планы, структуры, голос бренда</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Мой инструмент</div>
+          <div class="fact-value">AI последнего поколения</div>
+          <div class="fact-note">Claude, современные языковые модели, аналитика</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Опыт с твоим брендом</div>
+          <div class="fact-value">Уже вложено</div>
+          <div class="fact-note">Стратегия, аудит, манифест — до старта</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Моя цель</div>
+          <div class="fact-value">Первый серьёзный кейс</div>
+          <div class="fact-note">Именно поэтому условия выгодны для тебя</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Формат работы</div>
+          <div class="fact-value">Удалённо, с тобой</div>
+          <div class="fact-note">Ты присылаешь фото и новости — я делаю контент</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════════ УСЛОВИЯ ═══════════════ -->
+<section>
+  <div class="section-tag">Секция 05 — Условия сотрудничества</div>
+  <h2 class="section-title">Три варианта.<br><em>Выбирай что удобнее.</em></h2>
+
+  <div class="options-grid">
+
+    <!-- Вариант 1 -->
+    <div class="option-card">
+      <div class="option-num">01</div>
+      <div class="option-title">Пилотный месяц</div>
+      <div class="option-price">
+        <strong>20 000 ₽</strong>
+        первый месяц, потом 55 000 ₽/мес
+      </div>
+      <ul class="option-items">
+        <li>Первый месяц по сниженной цене — ты видишь как я работаю</li>
+        <li>20 постов для Instagram и Telegram</li>
+        <li>Контент-план на месяц</li>
+        <li>Отчёт с аналитикой в конце</li>
+        <li>Если понравилось — продолжаем по 55 000 ₽</li>
+      </ul>
+      <div class="option-exit">Выход в любой момент без штрафов</div>
+    </div>
+
+    <!-- Вариант 2 — Рекомендуется -->
+    <div class="option-card recommended">
+      <div class="option-rec-badge">Предлагаю этот вариант</div>
+      <div class="option-num">02</div>
+      <div class="option-title">Контракт на 3 месяца</div>
+      <div class="option-price">
+        <strong>45 000 ₽/мес</strong>
+        три месяца фиксировано
+      </div>
+      <ul class="option-items">
+        <li>Три месяца — достаточно чтобы увидеть рост</li>
+        <li>20–25 постов в месяц для всех платформ</li>
+        <li>Ведение Telegram-канала</li>
+        <li>Email-воронка (5 писем) в первый месяц</li>
+        <li>Ежемесячный отчёт и стратегическая сессия</li>
+        <li>KPI прописаны заранее — понятно чего ожидать</li>
+      </ul>
+      <div class="option-exit">После 3 месяцев — пересмотр условий по результатам</div>
+    </div>
+
+    <!-- Вариант 3 -->
+    <div class="option-card">
+      <div class="option-num">03</div>
+      <div class="option-title">Результат + база</div>
+      <div class="option-price">
+        <strong>30 000 ₽</strong>
+        + бонус до 15 000 ₽ за KPI
+      </div>
+      <ul class="option-items">
+        <li>Фиксированная часть: 30 000 ₽/мес</li>
+        <li>Бонус +15 000 ₽ если выполнены KPI за месяц</li>
+        <li>Telegram вырос на 200+ подписчиков</li>
+        <li>Сделано 20+ публикаций</li>
+        <li>Ты платишь только за реальный результат</li>
+      </ul>
+      <div class="option-exit">Минимум 2 месяца — за 1 месяц рост не виден</div>
+    </div>
+
+  </div>
+
+  <div style="background: var(--cream2); padding: 28px 36px; font-size: 12px; color: var(--muted); line-height: 2; border-left: 3px solid var(--border);">
+    <strong style="color: var(--black);">Как мы работаем:</strong> ты присылаешь фото изделий, новости о бренде, события —
+    раз в 1–2 недели. Я делаю весь контент на основе этого.
+    Ты согласовываешь — я публикую или передаю тебе готовое для публикации.
+    Без лишних звонков и совещаний.
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ═══════════════ KPI ═══════════════ -->
+<section>
+  <div class="section-tag">Секция 06 — Что измеряем</div>
+  <h2 class="section-title">KPI на 3 месяца.<br><em>Конкретные цифры, не обещания.</em></h2>
+
+  <table class="kpi-table">
+    <thead>
+      <tr>
+        <th>Платформа</th>
+        <th>Сейчас</th>
+        <th>Цель за 3 месяца</th>
+        <th>Как будем достигать</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="kpi-platform">Telegram</div></td>
+        <td><div class="kpi-now">182 подписчика</div></td>
+        <td><div class="kpi-goal">600–800 подписчиков</div></td>
+        <td><div class="kpi-how">Регулярный контент, интеграции, розыгрыш</div></td>
+      </tr>
+      <tr>
+        <td><div class="kpi-platform">Instagram</div></td>
+        <td><div class="kpi-now">Текущий охват</div></td>
+        <td><div class="kpi-goal">+40% охват, +25% вовлечённость</div></td>
+        <td><div class="kpi-how">Системный контент-план, сторис, правильные хэштеги</div></td>
+      </tr>
+      <tr>
+        <td><div class="kpi-platform">Pinterest</div></td>
+        <td><div class="kpi-now">1 подписчик</div></td>
+        <td><div class="kpi-goal">30–50 подписчиков, трафик на сайт</div></td>
+        <td><div class="kpi-how">Регулярные пины, описания с ключевыми словами</div></td>
+      </tr>
+      <tr>
+        <td><div class="kpi-platform">Контент</div></td>
+        <td><div class="kpi-now">Нерегулярно</div></td>
+        <td><div class="kpi-goal">20–25 публикаций в месяц</div></td>
+        <td><div class="kpi-how">Готовый план на месяц вперёд, всегда в срок</div></td>
+      </tr>
+      <tr>
+        <td><div class="kpi-platform">Email</div></td>
+        <td><div class="kpi-now">Нет воронки</div></td>
+        <td><div class="kpi-goal">Запущена серия из 5 писем</div></td>
+        <td><div class="kpi-how">Написать и настроить в первый месяц</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="font-size: 11px; color: var(--muted); font-style: italic; padding: 16px 0;">
+    * Рост подписчиков зависит также от активности самого бренда, бюджета на продвижение и внешних факторов.
+    Мои KPI — это публикации, качество контента и стратегия. Продажи — совместный результат.
+  </div>
+</section>
+
+<!-- ═══════════════ ФИНАЛ ═══════════════ -->
+<div class="final">
+  <div class="final-inner">
+    <div class="final-eyebrow">Следующий шаг</div>
+    <h2 class="final-title">Давай просто попробуем</h2>
+    <p class="final-text">
+      Если через месяц ты видишь результат и тебе нравится как мы работаем — продолжаем.
+      Если нет — расстаёмся без обид. Я не прошу авансовых платежей за год
+      и не обещаю того, в чём не уверена.
+    </p>
+
+    <div class="final-links">
+      <a class="final-link main" href="sevenworlds-presentation.html" target="_blank">📊 Полная стратегия</a>
+      <a class="final-link" href="sevenworlds-social-audit.html" target="_blank">📱 Аудит соцсетей</a>
+      <a class="final-link" href="sevenworlds-manifesto.html" target="_blank">📜 Манифест бренда</a>
+    </div>
+
+    <div class="final-sign">
+      <div class="final-sign-name">Елена Прасолова</div>
+      <div class="final-sign-role">Контент-стратег · alenaprasol@tutamail.com</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
