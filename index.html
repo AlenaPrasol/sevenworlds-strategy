@@ -295,6 +295,7 @@ body::before {
 .doc-card:nth-child(1) { animation-delay: .1s; }
 .doc-card:nth-child(2) { animation-delay: .22s; }
 .doc-card:nth-child(3) { animation-delay: .34s; }
+.doc-card:nth-child(4) { animation-delay: .46s; }
 
 @keyframes fadeUp {
   to { opacity:1; transform:translateY(0); }
@@ -318,7 +319,30 @@ body::before {
   </div>
 
   <!-- КАРТОЧКИ ДОКУМЕНТОВ -->
-  <div class="docs-grid">
+  <div class="docs-grid" style="grid-template-columns: repeat(2,1fr); max-width:1100px;">
+
+    <!-- 00 — Личное предложение -->
+    <a class="doc-card" href="sevenworlds-proposal.html" target="_blank" style="background:rgba(181,145,74,0.08); border:1px solid rgba(181,145,74,0.2);">
+      <div class="doc-num">↗</div>
+      <span class="doc-icon">🤝</span>
+      <div class="doc-tag">Личное · Честное · Условия</div>
+      <div class="doc-title">Предложение о сотрудничестве</div>
+      <div class="doc-desc">
+        Короткий и честный документ для личного разговора:
+        что вижу в бренде, что уже сделала, что предлагаю
+        и три варианта условий без риска.
+      </div>
+      <div class="doc-includes">
+        <span class="doc-includes-item">Диагноз — офлайн vs цифра</span>
+        <span class="doc-includes-item">Три готовых документа — уже сделаны</span>
+        <span class="doc-includes-item">Что берусь делать, что — нет</span>
+        <span class="doc-includes-item">Честно о себе и AI-инструментах</span>
+        <span class="doc-includes-item">Три варианта условий на выбор</span>
+        <span class="doc-includes-item">KPI — конкретные цифры</span>
+        <span class="doc-includes-item">Выход без штрафов в любой момент</span>
+      </div>
+      <div class="doc-arrow">Открыть предложение</div>
+    </a>
 
     <!-- 01 — Главная презентация -->
     <a class="doc-card featured" href="sevenworlds-presentation.html" target="_blank">
